@@ -5,7 +5,12 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { HashRouter, Route, NavLink } from 'react-router-dom';
 import { Alert } from './widgets';
-import { studentService } from './services';
+import { caseService, studentService} from './services';
+import { CaseFeed } from './components/caseFeed/caseFeed';
+import { Case} from "./components/case/case";
+import { NavBar } from "./components/header/header";
+import {Footer} from "./components/footer/footer";
+import {Category} from "./components/pages/category/category";
 
 // Reload application when not in production environment
 if (process.env.NODE_ENV !== 'production') {
@@ -73,6 +78,7 @@ class StudentList extends Component {
       .catch((error: Error) => Alert.danger(error.message));
   }
 }
+
 
 class StudentDetails extends Component<{ match: { params: { id: number } } }> {
   student = null;
@@ -172,12 +178,14 @@ if (root)
   ReactDOM.render(
     <HashRouter>
       <div>
-        <Alert />
-        <Menu />
-        <Route exact path="/" component={Home} />
-        <Route path="/students" component={StudentList} />
-        <Route exact path="/students/:id" component={StudentDetails} />
-        <Route exact path="/students/:id/edit" component={StudentEdit} />
+
+          <Alert />
+          <NavBar/>
+          <Route exact path="/" component={CaseFeed}/>
+          <Route exact path="/case/:id" component={Case}/>
+          <Route exact path="/cat/:cat" component={Category}/>
+          <Footer/>
+
       </div>
     </HashRouter>,
     root

@@ -1,0 +1,17 @@
+.headerColor {
+    background-color: #194c50;
+}
+
+.headerColor a {
+    color: #eaeaea;
+    text-decoration: none;
+}
+
+.headerColor a :hover{
+    font-weight: bold;
+}
+
+
+.dropdownMenuItem a{
+    color: black;
+}
