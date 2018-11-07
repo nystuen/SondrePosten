@@ -1,3 +1,4 @@
+
 .headerColor {
     background-color: #194c50;
 }
@@ -11,7 +12,33 @@
     font-weight: bold;
 }
 
-
 .dropdownMenuItem a{
     color: black;
+}
+
+.liveFeed {
+    box-shadow: #aaaaaa 0px 0px 5px;
+}
+
+.header {
+    padding-right: 5em;
+    padding-left: 5em;
+    font-family: 'Playfair Display', sans-serif;
+
+}
+
+
+#hamburgerIcon {
+    display: none;
+}
+
+
+@media only screen and (max-width: 991px) {
+    #collapse-button{
+        display: block;
+    }
+    #hamburgerIcon {
+        display: inline;
+        max-width: 30px;
+    }
 }

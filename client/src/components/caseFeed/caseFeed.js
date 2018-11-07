@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {Component} from 'react-simplified';
-import Card from '../card/card';
 import {Alert} from "../../widgets";
 import {caseService} from '../../services';
 import {TextHeader} from "../textHeader/textHeader";
 import css from './caseFeed.css';
+import {CardPreview} from "../card/cardPreview";
 
 export class CaseFeed extends Component {
     cases = [];
@@ -20,9 +20,9 @@ export class CaseFeed extends Component {
         return (
             <div>
                 <TextHeader text="Viktige saker"/>
-                <div className="grid container">
+                <div className="grid container-large">
                     {this.cases.map(thisCase => (
-                        <Card case={thisCase}/>
+                        <CardPreview key={thisCase.id} case={thisCase}/>
                     ))}
                 </div>
             </div>

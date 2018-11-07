@@ -8,7 +8,7 @@ export class TextHeader extends Component<{ text : string }> {
     render() {
         return (
             <div className="container textheader ">
-                <h1>{this.props.text}</h1>
+                <h3>{this.props.text}</h3>
             </div>
         );
     }

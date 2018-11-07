@@ -1,0 +1,7 @@
+.detailBox {
+    padding-top: 2em;
+}
+
+.singleComment:nth-child(odd){
+    background-color: #fafafa;
+}

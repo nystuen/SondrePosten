@@ -15,9 +15,13 @@ class Case {
     overskrift: string;
     innhold: string;
     kategori: string;
-    tidspunkt: number;
     viktighet: number;
+}
 
+class Comment {
+    sak_id: number;
+    brukernavn: string;
+    kommentar: string;
 }
 
 class CaseService {
@@ -30,8 +34,25 @@ class CaseService {
         return axios.get('/cat/' + cat);
     }
 
-    getCase(id: string): Promise<Case[]>{
-        return axios.get('case/' + id);
+    getCase(id: number): Promise<Case[]>{
+        return axios.get('/case/' + id);
+    }
+
+    getNewestCasesForLiveFeed(): Promise<Case[]>{
+        return axios.get('/livefeed');
+    }
+
+
+    getComments(id: number): Promise<Comment[]>{
+        return axios.get('/comments/' + id);
+    }
+
+    addCase(newCase: Case): Promise<Response>{
+        return axios.post('/reg', newCase);
+    }
+
+    addComment(newComment: Comment): Promise<Response>{
+        return axios.post('/addComment/' + newComment.sak_id, newComment);
     }
 }
 

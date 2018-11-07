@@ -4,7 +4,6 @@ import express from 'express';
 import path from 'path';
 import reload from 'reload';
 import fs from 'fs';
-import {Students} from './models.js';
 import CaseDao from './dao/casedao';
 import mysql from 'mysql';
 const bodyParser = require('body-parser');
@@ -39,7 +38,7 @@ app.use(express.json()); // For parsing application/json
 app.get('/importantCases', (req: Request, res: Response) => {
     if (!(req.body instanceof Object)) return res.sendStatus(400);
 
-    caseDao.getHeadersAndPicturesFromImportantCases((status: Object, data: Object) => {
+    caseDao.getHeadersAndPicturesFromImportantCases((status: number, data: Object) => {
         console.log('OK');
         res.status(status);
         res.json({ data: data });
@@ -47,16 +46,26 @@ app.get('/importantCases', (req: Request, res: Response) => {
 
 });
 
-app.get('/students', (req: Request, res: Response) => {
-    return Students.findAll().then(students => res.send(students));
+
+// Get livefeed
+app.get('/livefeed', (req: Request, res: Response) => {
+    if (!(req.body instanceof Object)) return res.sendStatus(400);
+
+    caseDao.getNewestCasesForLiveFeed((status: number, data: Object) => {
+        console.log('OK');
+        res.status(status);
+        res.json({ data: data });
+    });
+
 });
+
 
 
 // Get Categories
 app.get('/cat/:cat', (req: Request, res: Response) => {
     if (!(req.body instanceof Object)) return res.sendStatus(400);
 
-    caseDao.getAllFromOneKat(req.params.cat, (status: Object, data: Object) => {
+    caseDao.getAllFromOneKat(req.params.cat, (status: number, data: Object) => {
         res.status(status);
         res.json({ data: data, title: req.params.cat });
     });
@@ -66,40 +75,75 @@ app.get('/cat/:cat', (req: Request, res: Response) => {
 app.get('/case/:id', (req: Request, res: Response) => {
     if (!(req.body instanceof Object)) return res.sendStatus(400);
 
-    caseDao.getOneCase(req.params.id, (status: Object, data: Object) => {
+    caseDao.getOneCase(req.params.id, (status: number, data: Object) => {
         res.status(status);
-        res.json({ data: data, id: req.params.case });
+        res.json({ data: data});
     });
 });
 
+// Get comments
+app.get('/comments/:id', (req: Request, res: Response) => {
+    if (!(req.body instanceof Object)) return res.sendStatus(400);
+
+    caseDao.getComments(req.params.id, (status: number, data: Object) => {
+        res.status(status);
+        res.json({ data: data });
+    });
+});
 
 // ---Post---
 
-// Post Reg
-app.post('/reg', urlencodedParser, (req: Request, res: Response) => {
+// Add new case
+app.post('/reg', (req: Request, res: Response) => {
 
     if (!(req.body instanceof Object)) return res.sendStatus(400);
 
     let currentdate = new Date();
-    let datetime = 'Last Sync: ' + currentdate.getDate() + '/'
+    let datetime = currentdate.getDate() + '/'
         + (currentdate.getMonth() + 1) + '/'
-        + currentdate.getFullYear() + ' @ '
+        + currentdate.getFullYear() + ' Kl. '
         + currentdate.getHours() + ':'
         + currentdate.getMinutes();
 
-    res.render({ data: req.body });
-    console.log('Fikk POST-request fra klienten.');
+    console.log('Fikk POST-request fra klienten: addCase');
+
     let json = {
         'overskriftInput': req.body.overskriftInput,
         'innholdInput': req.body.innholdInput,
-        'tidspunktInput': currentdate,
+        'tidspunktInput': datetime,
         'bildeInput': req.body.bildeInput,
         'kategoriInput': req.body.kategoriInput,
         'viktighetInput': req.body.viktighetInput
     };
-    caseDao.regNewCase((json: Object), (status, data: Object) => {
+
+    console.log('KLOKKA: ' + datetime);
+    caseDao.regNewCase((json: Object), (status: number, data: Object) => {
+        console.log('nice!!');
         res.status(status);
-        res.render('regOk', { data: req.body });
+    });
+
+
+});
+
+
+// Add new comment to case
+
+app.post('/addComment/:id', (req: Request, res: Response) => {
+
+    if (!(req.body instanceof Object)) return res.sendStatus(400);
+
+
+    console.log('Fikk POST-request fra klienten: addComment');
+
+    let json = {
+        'sak_id': req.body.sak_id,
+        'brukernavn': req.body.brukernavn,
+        'kommentar':  req.body.kommentar
+    };
+
+    caseDao.addComment((json: Object), (status: number, data: Object) => {
+        console.log('added comment.');
+        res.status(status);
     });
 
 

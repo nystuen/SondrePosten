@@ -1,0 +1,16 @@
+dropdwon button
+
+<div className="dropdown">
+                            <button className="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Administrer saker
+                            </button>
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <NavLink activeStyle={{fontWeight: 'bold', color: 'black'}} to="/delete">
+                                    <a className="dropdown-item dropdownMenuItem" href="#">Slett en sak</a>
+                                </NavLink>
+                                <NavLink activeStyle={{fontWeight: 'bold'}} to="/reg">
+                                    <a className=" dropdownMenuItem dropdown-item" href="#">Registrer ny sak</a>
+                                </NavLink>
+                            </div>
+                        </div>

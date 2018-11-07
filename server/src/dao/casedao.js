@@ -12,7 +12,7 @@ module.exports = class CaseDao extends Dao {
 
     getAllFromOneKat(kat, callback) {
         super.query(
-            "select id, overskrift, bilde from sak where kategori LIKE ?",
+            "select id, overskrift, bilde from sak where kategori LIKE ? ORDER BY `sak`.`tidspunkt` DESC",
             [kat],
             callback
         );
@@ -20,21 +20,44 @@ module.exports = class CaseDao extends Dao {
 
     getOneCase(id, callback) {
         super.query(
-            "select id, overskrift, bilde, innhold, tidspunkt FROM sak WHERE id=?",
+            "select id, overskrift, bildetekst, bilde, innhold, tidspunkt FROM sak WHERE id=?",
             [id],
+            callback
+        );
+    }
+
+    getNewestCasesForLiveFeed(callback) {
+        super.query(
+            "SELECT id, overskrift, tidspunkt FROM sak ORDER BY `sak`.`tidspunkt` DESC limit 5",
+            [],
             callback
         );
     }
 
     getHeadersAndPicturesFromImportantCases(callback) {
         super.query(
-            "select id, overskrift, bilde from sak WHERE viktighet=1",
+            "select id, overskrift, bilde from sak WHERE viktighet=1 ORDER BY `sak`.`tidspunkt` DESC",
             [],
             callback
         );
     }
 
 
+    deleteOneCase(json, callback) {
+        let val = [json.overskriftInput, json.tidspunktInput];
+        super.query(
+            "DELETE FROM sak WHERE overskrift LIKE ? AND tidspunkt LIKE ?",
+            val,
+            callback);
+    }
+
+    getComments(id, callback) {
+        super.query(
+            "SELECT sak_id, brukernavn, kommentar FROM sak_kommentar_bruker WHERE sak_id=?",
+            [id],
+            callback
+        );
+    }
 
     regNewCase(json, callback) {
         let val = [json.overskriftInput, json.innholdInput, json.tidspunktInput, json.bildeInput, json.kategoriInput, json.viktighetInput];
@@ -45,18 +68,12 @@ module.exports = class CaseDao extends Dao {
         );
     }
 
-    deleteOneCase(json, callback){
-        let val = [json.overskriftInput, json.tidspunktInput];
+    addComment(json, callback) {
+        let val = [json.sak_id, json.brukernavn, json.kommentar];
         super.query(
-            "DELETE FROM sak WHERE overskrift LIKE ? AND tidspunkt LIKE ?",
+            "insert into sak_kommentar_bruker (sak_id, brukernavn, kommentar) values (?,?,?)",
             val,
-            callback);
+            callback
+        );
     }
-
-
-
-
-
-
-
 };

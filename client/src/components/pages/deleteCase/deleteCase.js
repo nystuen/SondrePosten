@@ -1,16 +1,15 @@
 import {Component} from "react-simplified";
 import {NavLink} from "react-router-dom";
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import TextHeader from '../../textHeader/textHeader';
+import {TextHeader} from '../../textHeader/textHeader';
 
 
-class DeleteCase extends Component {
+export class DeleteCase extends Component {
 
     render() {
         return (
-            <div className="container feed" >
-              <TextHeader text="Slett en sak"/>
+            <div className="container feed">
+                <TextHeader text="Slett en sak"/>
 
                 <div className="input-group input-group-mb mb-3">
                     <div className="input-group-prepend">
@@ -29,7 +28,7 @@ class DeleteCase extends Component {
                 </div>
 
 
-                <button className="btn btn-primary" >Slett</button>
+                <button className="btn btn-primary">Slett</button>
             </div>
         );
     }
@@ -37,9 +36,4 @@ class DeleteCase extends Component {
     static submit(k) {
         console.log('fetch call her:', k);
     }
-
-
-
 }
-
-export default DeleteCase;
