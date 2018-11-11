@@ -4,6 +4,7 @@
   "scripts": {
     "start": "webpack --mode development --watch",
     "build-prod": "webpack --mode production",
+    "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls",
     "test": "jest"
   },
   "jest": {
