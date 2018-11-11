@@ -2,6 +2,6 @@
   "name": "service",
   "version": "1.0.0",
   "scripts": {
-    "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
+    "coveralls": "jest --coverage && cat .client/tests/coverage/lcov.info | coveralls"
   }
 }
