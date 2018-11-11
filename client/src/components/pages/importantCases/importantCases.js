@@ -4,27 +4,23 @@ import Card from '../../card/card';
 import { TextHeader } from '../../textHeader/textHeader';
 import { caseService } from '../../../services';
 import { Alert } from '../../../widgets';
-import css from './category.css';
 import { CardPreview } from '../../card/cardPreview';
-import { CaseFeed } from '../../caseFeed/caseFeed';
+import {CaseFeed} from '../../caseFeed/caseFeed';
 
-export class Category extends Component<{ match: { params: { kat: string } } }> {
+export class ImportantCases extends Component {
   cases = [];
-  amountOfCases: number = -1;
-
 
   componentDidMount() {
     caseService
-      .getAllFromOneKat(this.props.match.params.kat)
+      .getHeadersAndPicturesFromImportantCases()
       .then(cases => (this.cases = cases.data))
-      .then(cases => this.amountOfCases = cases.length)
       .catch((error: Error) => Alert.danger(error.message));
   }
 
   render() {
     return (
       <div>
-        <CaseFeed title={this.props.match.params.kat.toUpperCase()} cases={this.cases}/>
+        <CaseFeed title="Viktige saker" cases={this.cases}/>
       </div>
     );
   }
