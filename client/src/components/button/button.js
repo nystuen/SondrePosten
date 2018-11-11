@@ -11,9 +11,9 @@ export class Button extends Component<{ type: string, href: string, onClick: () 
 
     render() {
         return (
-            <div>
-                <button className={this.className}>{this.props.children}</button>
-            </div>
+            <span>
+                <button onClick={() => { this.props.onClick() }} className={this.className}>{this.props.children}</button>
+            </span>
         );
     }
 }

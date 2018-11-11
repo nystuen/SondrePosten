@@ -37,12 +37,12 @@
 
 @media (min-width: 992px) {
     .container-large {
-        max-width: 720px
+        max-width: 1000px;
     }
 }
 
 @media (min-width: 1200px) {
     .container-large {
-        max-width: 920px
+        max-width: 1000px
     }
 }

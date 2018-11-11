@@ -23,8 +23,11 @@
 .header {
     padding-right: 5em;
     padding-left: 5em;
-    font-family: 'Playfair Display', sans-serif;
 
+}
+
+#logo {
+    font-family: 'Playfair Display', sans-serif;
 }
 
 

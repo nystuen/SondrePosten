@@ -1,74 +1,45 @@
 // @flow
 import axios from 'axios';
+import { CaseType } from './components/types/CaseType';
+import { Comments } from './components/comment/comments';
 
 axios.interceptors.response.use(response => response.data);
 
-class Student {
-    id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
-}
-
-class Case {
-    id: number;
-    overskrift: string;
-    innhold: string;
-    kategori: string;
-    viktighet: number;
-}
-
-class Comment {
-    sak_id: number;
-    brukernavn: string;
-    kommentar: string;
-}
-
 class CaseService {
 
-    getHeadersAndPicturesFromImportantCases(): Promise<Case[]> {
-        return axios.get('/importantCases');
-    }
+  getHeadersAndPicturesFromImportantCases(): Promise<CaseType[]> {
+    return axios.get('/importantCases');
+  }
 
-    getAllFromOneKat(cat: string): Promise<Case[]> {
-        return axios.get('/cat/' + cat);
-    }
+  getAllFromOneKat(kat: string): Promise<CaseType[]> {
+    return axios.get('/kat/' + kat);
+  }
 
-    getCase(id: number): Promise<Case[]>{
-        return axios.get('/case/' + id);
-    }
+  getCase(id: number): Promise<CaseType[]> {
+    return axios.get('/case/' + id);
+  }
 
-    getNewestCasesForLiveFeed(): Promise<Case[]>{
-        return axios.get('/livefeed');
-    }
+  getNewestCasesForLiveFeed(): Promise<CaseType[]> {
+    return axios.get('/livefeed');
+  }
 
+  getComments(id: number): Promise<Comments[]> {
+    return axios.get('/comments/' + id);
+  }
 
-    getComments(id: number): Promise<Comment[]>{
-        return axios.get('/comments/' + id);
-    }
+  addCase(newCase: CaseType): Promise<Response> {
+    return axios.post('/reg', newCase);
+  }
 
-    addCase(newCase: Case): Promise<Response>{
-        return axios.post('/reg', newCase);
-    }
+  addComment(newComment: Comments): Promise<Response> {
+    return axios.post('/addComment/' + newComment.sak_id, newComment);
+  }
 
-    addComment(newComment: Comment): Promise<Response>{
-        return axios.post('/addComment/' + newComment.sak_id, newComment);
-    }
+  deleteOneCase(id: number): Promise<Response> {
+    return axios.put('/deleteCase/' + id);
+  }
 }
 
-class StudentService {
-    getStudents(): Promise<Student[]> {
-        return axios.get('/students');
-    }
-
-    getStudent(id: number): Promise<Student> {
-        return axios.get('/students/' + id);
-    }
-
-    updateStudent(student: Student): Promise<void> {
-        return axios.put('/students', student);
-    }
-}
 
 export let caseService = new CaseService();
 

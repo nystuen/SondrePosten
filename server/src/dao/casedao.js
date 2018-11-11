@@ -12,7 +12,7 @@ module.exports = class CaseDao extends Dao {
 
     getAllFromOneKat(kat, callback) {
         super.query(
-            "select id, overskrift, bilde from sak where kategori LIKE ? ORDER BY `sak`.`tidspunkt` DESC",
+            "select id, overskrift, bilde from sak WHERE aktiv = 1 AND kategori LIKE ? ORDER BY `sak`.`tidspunkt` DESC ",
             [kat],
             callback
         );
@@ -20,7 +20,7 @@ module.exports = class CaseDao extends Dao {
 
     getOneCase(id, callback) {
         super.query(
-            "select id, overskrift, bildetekst, bilde, innhold, tidspunkt FROM sak WHERE id=?",
+            "select id, overskrift, bildetekst, bilde, innhold, tidspunkt FROM sak WHERE aktiv = 1 AND id=?",
             [id],
             callback
         );
@@ -28,7 +28,7 @@ module.exports = class CaseDao extends Dao {
 
     getNewestCasesForLiveFeed(callback) {
         super.query(
-            "SELECT id, overskrift, tidspunkt FROM sak ORDER BY `sak`.`tidspunkt` DESC limit 5",
+            "SELECT id, overskrift, tidspunkt FROM sak WHERE aktiv = 1 ORDER BY `sak`.`tidspunkt` DESC limit 5",
             [],
             callback
         );
@@ -36,7 +36,7 @@ module.exports = class CaseDao extends Dao {
 
     getHeadersAndPicturesFromImportantCases(callback) {
         super.query(
-            "select id, overskrift, bilde from sak WHERE viktighet=1 ORDER BY `sak`.`tidspunkt` DESC",
+            "select id, overskrift, bilde from sak WHERE aktiv = 1 AND viktighet=1 ORDER BY `sak`.`tidspunkt` DESC",
             [],
             callback
         );
@@ -59,10 +59,11 @@ module.exports = class CaseDao extends Dao {
         );
     }
 
-    regNewCase(json, callback) {
-        let val = [json.overskriftInput, json.innholdInput, json.tidspunktInput, json.bildeInput, json.kategoriInput, json.viktighetInput];
+
+  regNewCase(json, callback) {
+        let val = [json.overskriftInput, json.bildetekstInput, json.innholdInput, json.tidspunktInput, json.bildeInput, json.kategoriInput, json.viktighetInput];
         super.query(
-            "insert into sak (overskrift, innhold, tidspunkt, bilde, kategori, viktighet) values (?,?,?,?,?,?)",
+            "insert into sak (aktiv, overskrift, bildetekst, innhold, tidspunkt, bilde, kategori, viktighet) values (1, ?,?,?,?,?,?,?)",
             val,
             callback
         );
@@ -75,5 +76,13 @@ module.exports = class CaseDao extends Dao {
             val,
             callback
         );
+    }
+
+    setCaseAsInactive(id: number, callback){
+      super.query(
+        "UPDATE sak SET aktiv = 0 WHERE id=?",
+        [id],
+        callback
+      );
     }
 };

@@ -7,6 +7,7 @@ import css from './header.css';
 import {caseService} from "../../services";
 import {Alert} from "../../widgets";
 import Card from "../card/card";
+//import {CaseType} from '../types/caseType';
 
 
 export class LiveFeed extends Component {
@@ -22,17 +23,18 @@ export class LiveFeed extends Component {
     getCases = () => {
         caseService
             .getNewestCasesForLiveFeed()
+            // $FlowFixMe
             .then(cases => (this.cases = cases.data))
             .catch((error: Error) => Alert.danger(error.message));
     };
 
     render() {
         return (
-            <div className="liveFeed" behavior="alternate" scrollamount="7">
+            <div className="liveFeed" behavior="alternate" scrollamount="1">
                 <marquee>
                     <span>-</span>
                     {this.cases.map(thisCase => (
-                        <span key={thisCase.id}>{thisCase.overskrift} ({thisCase.tidspunkt}) -</span>
+                        <span key={thisCase.id}>{thisCase.overskrift} ({thisCase.tidspunkt}) -    </span>
                     ))}
                 </marquee>
             </div>
