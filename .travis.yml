@@ -13,5 +13,6 @@ before_install:
 install:
 - npm install
 script:
+- cd client
 - npm test
 - npm run coveralls

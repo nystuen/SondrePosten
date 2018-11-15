@@ -27,7 +27,7 @@ describe('Test for Button component', () => {
 
 });
 
-/*
+
 describe('Alert tests', () => {
   const wrapper = shallow(<Alert/>);
 
@@ -63,4 +63,3 @@ describe('Alert tests', () => {
     expect(wrapper.find('button.close')).toHaveLength(0);
   });
 });
-*/

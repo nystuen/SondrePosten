@@ -1,7 +1,7 @@
 // @flow
 
 import axios from 'axios';
-import { CaseObject, Category, Comment, RatingObject } from './components/types/types';
+import { CaseObject, Category, CommentObject, RatingObject } from './components/types/types';
 
 axios.interceptors.response.use(response => response.data);
 
@@ -23,7 +23,7 @@ class CaseService {
     return axios.get('/livefeed');
   }
 
-  getComments(id: number): Promise<Comment[]> {
+  getComments(id: number): Promise<CommentObject[]> {
     return axios.get('/comments/' + id);
   }
 
@@ -47,7 +47,7 @@ class CaseService {
     return axios.post('/reg', newCase);
   }
 
-  addComment(newComment: Comment): Promise<Response> {
+  addComment(newComment: CommentObject): Promise<Response> {
     return axios.post('/addComment/' + newComment.sak_id, newComment);
   }
 
