@@ -11,6 +11,7 @@ import { Button } from '../src/components/button/button';
 chai.use(sinonChai);
 
 
+
 describe('Test for Button component', () => {
   let wrapper, buttonType, buttonSpy, children;
 // type = danger,, onClick = functin, children

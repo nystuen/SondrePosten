@@ -9,7 +9,6 @@ import CommentDao from './dao/commentDao';
 import RatingDao from './dao/ratingDao';
 import mysql from 'mysql';
 
-
 const bodyParser = require('body-parser');
 
 type Request = express$Request;
