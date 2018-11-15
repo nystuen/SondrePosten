@@ -14,8 +14,8 @@ export class Card extends Component<{
 }> {
 
   id = this.props.case.id;
-  likes: number = 0;
-  dislikes: number = 0;
+  likes: number = -1;
+  dislikes: number = -1;
 
   componentDidMount() {
     caseService
