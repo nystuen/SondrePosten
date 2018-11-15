@@ -5,6 +5,8 @@ import path from 'path';
 import reload from 'reload';
 import fs from 'fs';
 import CaseDao from './dao/casedao';
+import CommentDao from './dao/commentDao';
+import RatingDao from './dao/ratingDao';
 import mysql from 'mysql';
 
 
@@ -28,6 +30,8 @@ const pool = mysql.createPool({
 let app = express();
 let urlencodedParser = bodyParser.urlencoded({ extended: false });
 let caseDao = new CaseDao(pool);
+let commentDao = new CommentDao(pool);
+let ratingDao = new RatingDao(pool);
 app.use(express.static(public_path));
 app.use(express.json()); // For parsing application/json
 
@@ -50,7 +54,6 @@ app.get('/importantCases', (req: Request, res: Response) => {
 app.get('/livefeed', (req: Request, res: Response) => {
   if (!(req.body instanceof Object)) return res.sendStatus(400);
 
-
   caseDao.getNewestCasesForLiveFeed((status: number, data: Object) => {
     console.log('OK');
     res.status(status);
@@ -60,6 +63,16 @@ app.get('/livefeed', (req: Request, res: Response) => {
 
 
 // Get Categories
+
+app.get('/api/kat', (req: Request, res: Response) => {
+
+  caseDao.getCategories((status: number, data: Object) => {
+    res.status(status);
+    res.json({ data: data });
+  });
+});
+
+// Get all cases from one kat
 app.get('/kat/:kat', (req: Request, res: Response) => {
   if (!(req.body instanceof Object)) return res.sendStatus(400);
 
@@ -84,7 +97,29 @@ app.get('/case/:id', (req: Request, res: Response) => {
 app.get('/comments/:id', (req: Request, res: Response) => {
   if (!(req.body instanceof Object)) return res.sendStatus(400);
 
-  caseDao.getComments(req.params.id, (status: number, data: Object) => {
+  commentDao.getComments(req.params.id, (status: number, data: Object) => {
+    res.status(status);
+    res.json({ data: data });
+  });
+});
+
+// Get likes
+
+app.get('/likes/:id', (req: Request, res: Response) => {
+  if (!(req.body instanceof Object)) return res.sendStatus(400);
+
+  ratingDao.getLikesFromCase(req.params.id, (status: number, data: Object) => {
+    res.status(status);
+    console.log('likesServer: ', data[0].likes);
+    res.json({ data: data });
+  });
+});
+
+// Get dislikes
+app.get('/dislikes/:id', (req: Request, res: Response) => {
+  if (!(req.body instanceof Object)) return res.sendStatus(400);
+
+  ratingDao.getDislikesFromCase(req.params.id, (status: number, data: Object) => {
     res.status(status);
     res.json({ data: data });
   });
@@ -96,33 +131,32 @@ app.get('/comments/:id', (req: Request, res: Response) => {
 app.post('/reg', (req: Request, res: Response) => {
 
   if (!(req.body instanceof Object)) return res.sendStatus(400);
-
   let currentdate = new Date();
-  let datetime = currentdate.getDate() + '/'
-    + (currentdate.getMonth() + 1) + '/'
-    + currentdate.getFullYear() + ' Kl. '
+
+  let datetime = currentdate.getFullYear() + '-'
+    + (currentdate.getMonth() + 1) + '-'
+    + currentdate.getDate() + ' Kl. '
     + currentdate.getHours() + ':'
     + currentdate.getMinutes();
 
-  console.log('Fikk POST-request fra klienten: addCase');
-// $FlowFixMe
-
   let json = {
     // $FlowFixMe
-    'overskriftInput': req.body.overskriftInput,
+    'overskrift': req.body.overskrift,
     // $FlowFixMe
-    'innholdInput': req.body.innholdInput,
+    'innhold': req.body.innhold,
     // $FlowFixMe
-    'bildetekstInput': req.body.bildetekstInput,
+    'bildetekst': req.body.bildetekst,
 
-    'tidspunktInput': datetime,
+    'tidspunkt': datetime,
     // $FlowFixMe
-    'bildeInput': req.body.bildeInput,
+    'bilde': req.body.bilde,
     // $FlowFixMe
-    'kategoriInput': req.body.kategoriInput,
+    'kategori': req.body.kategori,
     // $FlowFixMe
-    'viktighetInput': req.body.viktighetInput
+    'viktighet': req.body.viktighet
   };
+
+  console.log('json:', json);
 
   caseDao.regNewCase((json: Object), (status: number, data: Object) => {
     console.log('nice!!');
@@ -131,21 +165,7 @@ app.post('/reg', (req: Request, res: Response) => {
 });
 
 
-// Put
-
-// Delete (set aktiv=0)
-app.put('/deleteCase/:id', (req: Request, res: Response) => {
-  if (!(req.body instanceof Object)) return res.sendStatus(400);
-
-  caseDao.setCaseAsInactive(req.params.id, (status: number, data: Object) => {
-    console.log('sak ' + req.params.id + ' slettet.');
-    res.status(status);
-  });
-});
-
-
 // Add new comment to case
-
 app.post('/addComment/:id', (req: Request, res: Response) => {
 
   if (!(req.body instanceof Object)) return res.sendStatus(400);
@@ -160,8 +180,46 @@ app.post('/addComment/:id', (req: Request, res: Response) => {
     'kommentar': req.body.kommentar
   };
 
-  caseDao.addComment((json: Object), (status: number, data: Object) => {
+  commentDao.addComment((json: Object), (status: number, data: Object) => {
     console.log('added comment.');
+    res.status(status);
+  });
+});
+
+
+// Like case
+app.post('/likeCase/:id', (req: Request, res: Response) => {
+
+  if (!(req.body instanceof Object)) return res.sendStatus(400);
+  console.log('Fikk POST-request fra klienten: likeCase');
+
+  ratingDao.likeCase((req.params.id), (status: number, data: Object) => {
+    res.status(status);
+  });
+});
+
+// Like dislike
+
+app.post('/dislikeCase/:id', (req: Request, res: Response) => {
+
+  if (!(req.body instanceof Object)) return res.sendStatus(400);
+  console.log('Fikk POST-request fra klienten: dislikeCase');
+
+
+  ratingDao.dislikeCase((req.params.id), (status: number, data: Object) => {
+    res.status(status);
+  });
+});
+
+
+// Put
+
+// Delete (set aktiv=0)
+app.put('/deleteCase/:id', (req: Request, res: Response) => {
+  if (!(req.body instanceof Object)) return res.sendStatus(400);
+
+  caseDao.setCaseAsInactive(req.params.id, (status: number, data: Object) => {
+    console.log('sak ' + req.params.id + ' slettet.');
     res.status(status);
   });
 });

@@ -1,6 +1,16 @@
 
+:root {
+    --1: #1679a6;
+    --2: #367ba6;
+    --3: #1d5c60;
+    --4: #194c50;
+    --5: #084350;
+    --6: #085461;
+
+}
+
 .headerColor {
-    background-color: #194c50;
+    background-color: var(--6);
 }
 
 .headerColor a {
@@ -8,40 +18,52 @@
     text-decoration: none;
 }
 
-.headerColor a :hover{
+.headerColor a :hover {
     font-weight: bold;
 }
 
-.dropdownMenuItem a{
+.dropdownMenuItem a {
     color: black;
 }
 
 .liveFeed {
     box-shadow: #aaaaaa 0px 0px 5px;
+    background-color: white;
 }
+
+.liveFeed span {
+    padding-right: 1em;
+}
+
 
 .header {
     padding-right: 5em;
     padding-left: 5em;
-
 }
 
 #logo {
     font-family: 'Playfair Display', sans-serif;
+    font-size: 1.5rem;
 }
-
 
 #hamburgerIcon {
     display: none;
 }
 
+#regLink {
+    right: 0;
+}
+.collapse{
+
+}
+
 
 @media only screen and (max-width: 991px) {
-    #collapse-button{
-        display: block;
-    }
+
     #hamburgerIcon {
         display: inline;
         max-width: 30px;
     }
+
+
 }

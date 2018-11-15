@@ -10,3 +10,7 @@
 .amountOfCases p {
     justify-self: start;
 }
+
+.caseFeed {
+    margin-bottom: 3em;
+}

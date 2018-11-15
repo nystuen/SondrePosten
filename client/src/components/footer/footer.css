@@ -1,3 +1,30 @@
 .footer {
-    margin-top: 2em;
+
+}
+
+.contact {
+
+    background-color: #fbfbfb;
+
+}
+
+.contact a {
+    padding-right: 1em;
+    padding-left: 1em;
+}
+
+.contact img {
+    max-width: 2rem;
+}
+
+.copyright {
+}
+
+
+.fab {
+    color: #1d5c60;
+}
+
+.fab:hover {
+    color: #0e2327;
 }

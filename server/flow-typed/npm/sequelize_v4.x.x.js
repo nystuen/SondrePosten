@@ -1364,7 +1364,7 @@ declare module "sequelize" {
     autoIncrement?: boolean,
 
     /**
-     * Comment for the database
+     * Comments for the database
      */
     comment?: string,
 
@@ -4718,7 +4718,7 @@ declare module "sequelize" {
     autoIncrement?: boolean,
 
     /**
-     * Comment for the database
+     * Comments for the database
      */
     comment?: string,
 

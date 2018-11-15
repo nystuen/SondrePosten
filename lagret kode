@@ -14,3 +14,42 @@ dropdwon button
                                 </NavLink>
                             </div>
                         </div>
+
+
+
+
+
+
+        <div className="container">
+
+          <div className="row">
+
+            <div className="col-md-6 col-sm-12  contact">
+              <p className="text-dark">© 2018 Copyright: Ådne Nystuen</p>
+            </div>
+
+            <div className="col-md-6 col-sm-12  contact">
+              <div class="mb-5 flex-center">
+
+                <a class="fb-ic"><img src="icons/face.png"/></a>
+                <a class="tw-ic"><img src="icons/twitter.png"/></a>
+                <a class="li-ic"><img src="icons/linkdIn.png"/></a>
+                <a class="ins-ic"><img src="icons/insta.png"/></a>
+                <a class="pin-ic"><img src="icons/pinterest.png"/></a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        caseService.addCase(newCase)
+              .then(res => {
+                console.log(res);
+                console.log(res.data);
+                this.case = newCase;
+              });
+
+            history.push('/kat/' + newCase.kategoriInput);

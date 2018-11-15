@@ -1,3 +1,5 @@
+// @flow
+
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import Card from '../../card/card';
@@ -16,6 +18,7 @@ export class Category extends Component<{ match: { params: { kat: string } } }> 
   componentDidMount() {
     caseService
       .getAllFromOneKat(this.props.match.params.kat)
+      // $FlowFixMe
       .then(cases => (this.cases = cases.data))
       .then(cases => this.amountOfCases = cases.length)
       .catch((error: Error) => Alert.danger(error.message));

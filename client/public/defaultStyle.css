@@ -1,3 +1,22 @@
+html{
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
+}
+
+footer {
+    width: 100%;
+    background: #333;
+    position: absolute;
+    bottom: 0;
+}
+
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;

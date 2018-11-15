@@ -1,3 +1,5 @@
+//@flow
+
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import Card from '../../card/card';
@@ -6,13 +8,15 @@ import { caseService } from '../../../services';
 import { Alert } from '../../../widgets';
 import { CardPreview } from '../../card/cardPreview';
 import {CaseFeed} from '../../caseFeed/caseFeed';
+import { CaseObject } from '../../types/types';
 
 export class ImportantCases extends Component {
-  cases = [];
+  cases: CaseObject  = [];
 
   componentDidMount() {
     caseService
       .getHeadersAndPicturesFromImportantCases()
+      // $FlowFixMe
       .then(cases => (this.cases = cases.data))
       .catch((error: Error) => Alert.danger(error.message));
   }
