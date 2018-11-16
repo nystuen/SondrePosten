@@ -103,8 +103,8 @@ export class NewCase extends Component {
           <div className="form-group col-md-6">
             <label htmlFor="sel2">Viktighet</label>
             <select className="form-control" id="viktighet" name="viktighet">
-              <option>1</option>
-              <option>2</option>
+              <option value={1}>Viktig</option>
+              <option value={2}>Ikke like viktig</option>
             </select>
           </div>
         </div>

@@ -19,7 +19,7 @@ before_script:
 run_tests:
   stage: test
   script:
-    - echo "CREATE DATABASE School" | mysql -uroot
+    docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
     - cd server && npm install && npm test && flow check src
     - cd ../client && npm install && npm test && flow check src
   artifacts:

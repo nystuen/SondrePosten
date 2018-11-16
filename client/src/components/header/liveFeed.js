@@ -13,6 +13,7 @@ import Marquee from 'react-smooth-marquee';
 
 export class LiveFeed extends Component {
   cases: CaseObject[] = [];
+;
 
   componentDidMount() {
     this.getCases();
@@ -35,7 +36,9 @@ export class LiveFeed extends Component {
         <marquee>
           <div className="marqueeContent">
             {this.cases.map(thisCase => (
-              <span key={thisCase.id}>{thisCase.overskrift} ({thisCase.tidspunkt})</span>
+
+
+               <span key={thisCase.id}>{thisCase.overskrift} ({thisCase.tidspunkt})</span>
             ))}
           </div>
         </marquee>
