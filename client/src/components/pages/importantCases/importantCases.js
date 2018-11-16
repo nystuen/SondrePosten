@@ -11,7 +11,7 @@ import {CaseFeed} from '../../caseFeed/caseFeed';
 import { CaseObject } from '../../types/types';
 
 export class ImportantCases extends Component {
-  cases: CaseObject  = [];
+  cases: CaseObject[] = [];
 
   componentDidMount() {
     caseService

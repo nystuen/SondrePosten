@@ -9,9 +9,10 @@ import { Alert } from '../../../widgets';
 import css from './category.css';
 import { CardPreview } from '../../card/cardPreview';
 import { CaseFeed } from '../../caseFeed/caseFeed';
+import {CaseObject} from '../../types/types';
 
 export class Category extends Component<{ match: { params: { kat: string } } }> {
-  cases = [];
+  cases: CaseObject[] = [];
   amountOfCases: number = -1;
 
 
