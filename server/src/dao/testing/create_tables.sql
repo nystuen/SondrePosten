@@ -37,6 +37,6 @@ CREATE TABLE sak_kommentar_bruker (
  brukernavn varchar(30) DEFAULT NULL,
  kommentar varchar(255) DEFAULT NULL,
  PRIMARY KEY (id),
- FOREIGN KEY sak_id REFERENCES sak(id)
+ FOREIGN KEY (sak_id) REFERENCES sak(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
 

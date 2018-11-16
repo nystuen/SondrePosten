@@ -2,6 +2,7 @@
 
 import { Students, sync } from '../src/models.js';
 import CaseDao from '../src/dao/casedao';
+import CommentDao from '../src/dao/casedao';
 import mysql from 'mysql';
 import runsqlfile from '../src/dao/testing/runsqlfile';
 
