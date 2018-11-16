@@ -1,6 +1,6 @@
 
 INSERT INTO kategori (kategori) VALUES
-    ('annet'), ('it'), ('samfunn'),('sport'),('økonomi')
+    ('annet'), ('it'), ('samfunn'),('sport'),('økonomi');
 
 INSERT INTO sak (aktiv, bilde, bildetekst, innhold, kategori, overskrift, tidspunkt, viktighet) VALUES
 (1, 'www.bilde1.no.jpg', 'bidletekst1', 'innhold1', 'sport', 'overksrift1', 'tidspunkt1', 1),
