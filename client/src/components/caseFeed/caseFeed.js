@@ -16,14 +16,15 @@ export class CaseFeed extends Component<{ title: string, cases: CaseObject[] }> 
   render() {
     return (
       <div className="caseFeed">
+
         <TextHeader text={this.props.title}/>
         <div className="grid container-large">
 
           {this.props.cases.slice(0, this.amountOfCases).map(thisCase => (
             <CardPreview key={thisCase.id} case={thisCase}/>
           ))}
-
         </div>
+
         <div className="container-large amountOfCases">
           <p>Viser {this.props.cases.slice(0, this.amountOfCases).length} av {this.props.cases.length}</p>
 
@@ -39,9 +40,9 @@ export class CaseFeed extends Component<{ title: string, cases: CaseObject[] }> 
   }
 
   loadMore() {
-    console.log("current cases: " + this.amountOfCases);
+    console.log('current cases: ' + this.amountOfCases);
     this.amountOfCases += 10;
-    console.log("cases now: " + this.amountOfCases);
+    console.log('cases now: ' + this.amountOfCases);
   }
 }
 

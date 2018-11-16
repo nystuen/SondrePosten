@@ -1,4 +1,5 @@
-DROP TABLE IF EXISTS sak, sak_rating, sak_kommentar_bruker, kategori;
+DROP TABLE IF EXISTS sak_kommentar_bruker, sak_rating, kategori, sak, sak_rating;
+
 
 CREATE TABLE `sak` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
