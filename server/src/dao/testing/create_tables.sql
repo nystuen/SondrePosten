@@ -28,7 +28,7 @@ CREATE TABLE sak_rating (
  sak_id int(11) DEFAULT NULL,
  rating int(11) DEFAULT NULL,
  PRIMARY KEY (rating_id),
- FOREIGN KEY (sak_id) REFERENCES sak(sak_id)
+ FOREIGN KEY (sak_id) REFERENCES sak(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
 
 CREATE TABLE sak_kommentar_bruker (
@@ -37,6 +37,6 @@ CREATE TABLE sak_kommentar_bruker (
  brukernavn varchar(30) DEFAULT NULL,
  kommentar varchar(255) DEFAULT NULL,
  PRIMARY KEY (id),
- FOREIGN KEY sak_id REFERENCES sak(sak_id)
+ FOREIGN KEY sak_id REFERENCES sak(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
 

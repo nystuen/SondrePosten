@@ -58,4 +58,17 @@ test('Testing if only get important cases', done => {
   caseDao.getHeadersAndPicturesFromImportantCases(callback);
 });
 
+test('Testing if first komment is created by user "ole"', done => {
+  function callback(status, data) {
+    console.log(
+      'Test callback: status=' + status + ', data=' + JSON.stringify(data)
+    );
+
+    expect(data.data[0].brukernavn).toBe('ole');
+    done();
+  }
+
+  commentDao.getComments(1);
+})
+
 
