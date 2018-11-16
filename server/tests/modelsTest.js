@@ -51,7 +51,7 @@ test('Testing if only get important cases', done => {
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
 
-    data.data.map(s => {
+    data.map(s => {
       expect(s.viktighet).toBe(1);
     });
     done();
@@ -66,13 +66,14 @@ test('Testing if first komment is created by user "ole"', done => {
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
 
-    expect(data.data[0].brukernavn).toBe('ole');
+    expect(data[0].brukernavn).toBe('ole');
     done();
   }
 
   commentDao.getComments('1', callback);
 });
 
+/*
 test('Testing if adding one comment works', done => {
   function callback(status, data) {
     console.log(
@@ -85,3 +86,5 @@ test('Testing if adding one comment works', done => {
 
   commentDao.addComment({brukernavn: "ole", kommentar: "kommentar", sak_id: "1"}, callback);
 });
+
+*/
