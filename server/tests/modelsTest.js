@@ -2,16 +2,16 @@
 
 import { Students, sync } from '../src/models.js';
 import CaseDao from '../src/dao/casedao';
-import mysql from "mysql";
+import mysql from 'mysql';
 import runsqlfile from '../src/dao/testing/runsqlfile';
 
 // GitLab CI Pool
 let pool = mysql.createPool({
   connectionLimit: 1,
-  host: "mysql",
-  user: "root",
-  password: "abc123",
-  database: "testdb",
+  host: 'mysql',
+  user: 'root',
+  password: 'abc123',
+  database: 'testdb',
   debug: false,
   multipleStatements: true
 });
@@ -30,31 +30,28 @@ afterAll(() => {
 });
 
 
-test("Testing if you get all 5 categories", done => {
+test('Testing if you get all 5 categories', done => {
   function callback(status, data) {
     console.log(
-      "Test callback: status=" + status + ", data=" + JSON.stringify(data)
+      'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
     expect(data.length).toBe(5);
-    expect(data[0].kategori).toBe("Annet");
+    expect(data[0].kategori).toBe('Annet');
 
     done();
   }
-
   caseDao.getCategories(callback);
 });
 
-test("Testing if only get important cases", done => {
+test('Testing if only get important cases', done => {
   function callback(status, data) {
     console.log(
-      "Test callback: status=" + status + ", data=" + JSON.stringify(data)
+      'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
 
     data.data.map(s => {
-    expect(s.viktighet).toBe(1);
-
-    })
-
+      expect(s.viktighet).toBe(1);
+    });
     done();
   }
 
