@@ -6,7 +6,7 @@ import mysql from "mysql";
 import runsqlfile from '../src/dao/testing/runsqlfile';
 
 // GitLab CI Pool
-var pool = mysql.createPool({
+let pool = mysql.createPool({
   connectionLimit: 1,
   host: "mysql",
   user: "root",
@@ -28,16 +28,35 @@ afterAll(() => {
 });
 
 
-test("get one person from db", done => {
+test("Testing if you get all 5 categories", done => {
   function callback(status, data) {
     console.log(
       "Test callback: status=" + status + ", data=" + JSON.stringify(data)
     );
     expect(data.length).toBe(5);
-    expect(data[0].navn).toBe("Annet");
+    expect(data[0].kategori).toBe("Annet");
+
     done();
   }
 
   caseDao.getCategories(callback);
 });
+
+test("Testing if only get important cases", done => {
+  function callback(status, data) {
+    console.log(
+      "Test callback: status=" + status + ", data=" + JSON.stringify(data)
+    );
+
+    data.data.map(s => {
+    expect(s.viktighet).toBe(1);
+
+    })
+
+    done();
+  }
+
+  caseDao.getHeadersAndPicturesFromImportantCases(callback);
+});
+
 

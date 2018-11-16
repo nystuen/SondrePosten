@@ -45,7 +45,7 @@ export class NavBar extends Component {
               {this.categories.map(s => (
                 <li key={s.kategori + 'Item'}>
                   <NavLink key={s.kategori} className="navbar"  activeStyle={{ fontWeight: 'bold' }}
-                           to={`/kat/${s.kategori}`} replace>{s.kategori}</NavLink>
+                           to={`/kat/${s.kategori.toLocaleLowerCase()}`} replace>{s.kategori}</NavLink>
                 </li>
               ))}
 
