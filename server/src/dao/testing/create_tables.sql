@@ -1,11 +1,13 @@
 DROP TABLE IF EXISTS `sak_kommentar_bruker`;
 DROP TABLE IF EXISTS `sak_rating`;
+DROP TABLE IF EXISTS `sak`;
 DROP TABLE IF EXISTS `kategori`;
-DROP TABLE IF EXISTS `sak_rating`;
 
-CREATE TABLE test (
-	id int NOT NULL AUTO_INCREMENT PRIMARY KEY
-);
+CREATE TABLE kategori (
+ kategori varchar(255) NOT NULL,
+ PRIMARY KEY (kategori) USING BTREE,
+ UNIQUE KEY kategori (kategori) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
  CREATE TABLE sak (
  id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -17,8 +19,8 @@ CREATE TABLE test (
  bilde varchar(255) DEFAULT NULL,
  kategori varchar(255) NOT NULL,
  viktighet int(11) DEFAULT NULL,
- KEY kategori (kategori),
- CONSTRAINT sak_ibfk_1 FOREIGN KEY (kategori) REFERENCES kategori (kategori)
+ FOREIGN KEY (kategori) REFERENCES kategori(kategori)
+
 ) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=latin1;
 
 CREATE TABLE sak_rating (
@@ -26,8 +28,7 @@ CREATE TABLE sak_rating (
  sak_id int(11) DEFAULT NULL,
  rating int(11) DEFAULT NULL,
  PRIMARY KEY (rating_id),
- KEY sak_id (sak_id),
- CONSTRAINT sak_rating_ibfk_1 FOREIGN KEY (sak_id) REFERENCES sak (id)
+ FOREIGN KEY (sak_id) REFERENCES sak(sak_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
 
 CREATE TABLE sak_kommentar_bruker (
@@ -36,12 +37,6 @@ CREATE TABLE sak_kommentar_bruker (
  brukernavn varchar(30) DEFAULT NULL,
  kommentar varchar(255) DEFAULT NULL,
  PRIMARY KEY (id),
- KEY sak_id (sak_id),
- CONSTRAINT sak_kommentar_bruker_ibfk_1 FOREIGN KEY (sak_id) REFERENCES sak (id)
+ FOREIGN KEY sak_id REFERENCES sak(sak_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
 
-CREATE TABLE kategori (
- kategori varchar(255) NOT NULL,
- PRIMARY KEY (kategori) USING BTREE,
- UNIQUE KEY kategori (kategori) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
