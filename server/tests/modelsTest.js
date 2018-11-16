@@ -79,10 +79,10 @@ test('Testing if adding one comment works', done => {
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
 
-    expect(data.data[0].brukernavn).toBe('ole');
+    expect(data.affectedRows).toBeGreaterThanOrEqual(1);
     done();
   }
 
-  commentDao.addComment()
+  commentDao.addComment(2, {brukernavn: "ole", kommentar: "kommentar", sak_id: "1"});
 
 }
