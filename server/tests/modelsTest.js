@@ -15,6 +15,8 @@ let pool = mysql.createPool({
   debug: false,
   multipleStatements: true
 });
+
+
 const caseDao = new CaseDao(pool);
 
 beforeAll(done => {
