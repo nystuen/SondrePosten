@@ -84,5 +84,4 @@ test('Testing if adding one comment works', done => {
   }
 
   commentDao.addComment(2, {brukernavn: "ole", kommentar: "kommentar", sak_id: "1"});
-
-}
+});
