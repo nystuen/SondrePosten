@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS `sak_rating`;
 DROP TABLE IF EXISTS `kategori`;
 DROP TABLE IF EXISTS `sak_rating`;
 
-CREATE TABLE `sak` (
+CREATE TABLE sak (
  `id` int(11) NOT NULL AUTO_INCREMENT,
  `aktiv` tinyint(1) DEFAULT NULL,
  `overskrift` varchar(255) DEFAULT NULL,
