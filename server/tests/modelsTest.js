@@ -2,7 +2,7 @@
 
 import { Students, sync } from '../src/models.js';
 import CaseDao from '../src/dao/casedao';
-import CommentDao from '../src/dao/casedao';
+import CommentDao from '../src/dao/commentdao';
 import mysql from 'mysql';
 import runsqlfile from '../src/dao/testing/runsqlfile';
 
@@ -19,6 +19,7 @@ let pool = mysql.createPool({
 
 
 const caseDao = new CaseDao(pool);
+const commentDao = new CommentDao(pool);
 
 beforeAll(done => {
   runsqlfile('create_tables.sql', pool, () => {
@@ -50,7 +51,7 @@ test('Testing if only get important cases', done => {
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
 
-    data.data.map(s => {
+    data.map(s => {
       expect(s.viktighet).toBe(1);
     });
     done();
@@ -69,7 +70,7 @@ test('Testing if first komment is created by user "ole"', done => {
     done();
   }
 
-  commentDao.getComments(1);
-})
+  commentDao.getComments('1', callback);
+});
 
 
