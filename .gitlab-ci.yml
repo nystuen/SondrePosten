@@ -1,7 +1,6 @@
 connect:
-    image: node:latest
-    script:
-      - echo "CREATE DATABASE School" | mysql -uroot
+  image: node:latest
+
 
 # Set up MySQL test-database
 services:
@@ -20,6 +19,7 @@ before_script:
 run_tests:
   stage: test
   script:
+    - echo "CREATE DATABASE School" | mysql -uroot
     - cd server && npm install && npm test && flow check src
     - cd ../client && npm install && npm test && flow check src
   artifacts:
