@@ -38,7 +38,7 @@ test('Testing if you get all 5 categories', done => {
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
     expect(data.length).toBe(5);
-    expect(data[0].kategori).toBe('Annet');
+    expect(data[0].kategori).toBe('økonomi');
 
     done();
   }
@@ -51,7 +51,7 @@ test('Testing if only get important cases', done => {
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
 
-    data.map(s => {
+    data.data.map(s => {
       expect(s.viktighet).toBe(1);
     });
     done();

@@ -74,8 +74,8 @@ export class Comments extends Component<{ id: number }> {
           {/* dette er en kommentar */}
           {this.comments.map(thisComment => (
             <div key={thisComment.id + 1} className="singleComment">
-              <h3 key={thisComment.id + 2}>{thisComment.brukernavn}</h3>
-              <p key={thisComment.id + 3}>{thisComment.kommentar}</p>
+              <h3>{thisComment.brukernavn}</h3>
+              <p>{thisComment.kommentar}</p>
             </div>
           ))}
         </div>

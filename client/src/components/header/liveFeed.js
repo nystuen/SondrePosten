@@ -36,9 +36,7 @@ export class LiveFeed extends Component {
         <marquee>
           <div className="marqueeContent">
             {this.cases.map(thisCase => (
-
-
-               <span key={thisCase.id}>{thisCase.overskrift} ({thisCase.tidspunkt})</span>
+              <a href={"/kat"}><span key={thisCase.id}>{thisCase.overskrift} ({thisCase.tidspunkt})</span></a>
             ))}
           </div>
         </marquee>

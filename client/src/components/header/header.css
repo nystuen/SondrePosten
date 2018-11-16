@@ -35,6 +35,10 @@
     padding-right: 1em;
 }
 
+.liveFeed a {
+    color:black;
+}
+
 
 .header {
     padding-right: 5em;
@@ -54,6 +58,7 @@
     right: 0;
 }
 .collapse{
+
 
 }
 
