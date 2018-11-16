@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS 'sak_kommentar_bruker', 'sak_rating', 'kategori', 'sak, sak_rating';
+DROP TABLE IF EXISTS sak_kommentar_bruker, sak_rating, kategori, sak, sak_rating;
 
 
 CREATE TABLE `sak` (
