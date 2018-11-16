@@ -1,6 +1,4 @@
-connect:
-  image: node:latest
-
+image: node:8
 
 # Set up MySQL test-database
 services:
@@ -8,32 +6,37 @@ services:
 
 # Configure test-database
 variables:
-  MYSQL_DATABASE: supertestdb
-  MYSQL_ROOT_PASSWORD: secret
+  MYSQL_DATABASE: testdb
+  MYSQL_ROOT_PASSWORD: abc123
 
-# Install node libraries
 before_script:
 - npm install -g flow-bin
+- cd server && npm install
+- cd ../client && npm install
 
-# Run JEST tests
 run_tests:
   stage: test
+  image: node:latest
   script:
-    - cd server && npm install && npm test && flow check src
-    - cd ../client && npm install && npm test && flow check src
+  - npm test && flow check src
+  - cd ../server && npm test && flow check src
   artifacts:
     paths:
-    - coverage/
+    - client/coverage
+    - server/coverage
 
-# Publish coverage report on gitlab-pages
+
 pages:
   stage: deploy
   dependencies:
   - run_tests
   script:
+  - cd ../
   - mkdir .public
-  - cp -r coverage/* .public
+  - cp -r client/* .public
+  - cp -r server/* .public
   - mv .public public
+
   artifacts:
     paths:
     - public

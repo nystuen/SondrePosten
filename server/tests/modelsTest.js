@@ -10,8 +10,8 @@ let pool = mysql.createPool({
   connectionLimit: 1,
   host: "mysql",
   user: "root",
-  password: "secret",
-  database: "supertestdb",
+  password: "abc123",
+  database: "testdb",
   debug: false,
   multipleStatements: true
 });
