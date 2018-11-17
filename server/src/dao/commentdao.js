@@ -4,7 +4,7 @@ const Dao = require('./dao');
 
 module.exports = class CommentDao extends Dao {
 
-  getComments(id: string, callback: Function) {
+  getComments(id: number, callback: Function) {
     super.query(
       "SELECT id, sak_id, brukernavn, kommentar FROM sak_kommentar_bruker WHERE sak_id=?",
       [id],

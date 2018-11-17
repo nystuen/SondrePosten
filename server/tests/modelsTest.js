@@ -69,7 +69,7 @@ test('Testing if first komment is created by user "ole"', done => {
     done();
   }
 
-  commentDao.getComments('1', callback);
+  commentDao.getComments(1, callback);
 });
 
 /*
