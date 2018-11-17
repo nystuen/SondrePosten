@@ -130,8 +130,36 @@ test('Testing if adding one case works', done => {
   }
 
   caseDao.regNewCase(
-    {aktiv: 1, overksrift: "overksrift", bildetekst: "bildetekst",
-      innhold: "innhold", tidspunkt: "tidspunkt", bilde:"bilde",
-      kategori:"sport", viktighet:1}, callback);
+    {
+      aktiv: 1, overksrift: 'overksrift', bildetekst: 'bildetekst',
+      innhold: 'innhold', tidspunkt: 'tidspunkt', bilde: 'bilde',
+      kategori: 'sport', viktighet: 1
+    }, callback);
+
+});
+
+test('Testing if deletingone case sets aktiv = 0, setCaseAsInactive', done => {
+  function callback1(status, data) {
+    console.log(
+      'Test callback: status=' + status + ', data=' + JSON.stringify(data)
+    );
+    expect(data.affectedRows).toBeGreaterThanOrEqual(1);
+
+
+    function callback2(status, data) {
+      console.log(
+        'Test callback: status=' + status + ', data=' + JSON.stringify(data)
+      );
+
+      expect(data[0].aktiv).toBe(0);
+
+    }
+
+    caseDao.getOneCase('1', callback2);
+
+    done();
+  }
+
+  caseDao.setCaseAsInactive('1', callback1);
 
 });
