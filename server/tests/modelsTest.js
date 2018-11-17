@@ -31,7 +31,7 @@ afterAll(() => {
 });
 
 
-test('Testing if you get all 5 categories', done => {
+test('Testing if you get all 5 categories, getAllFromOneKat', done => {
   function callback(status, data) {
     console.log(
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
@@ -41,6 +41,7 @@ test('Testing if you get all 5 categories', done => {
 
     done();
   }
+
   caseDao.getCategories(callback);
 });
 
@@ -58,6 +59,21 @@ test('Testing if only get important cases', done => {
 
   caseDao.getHeadersAndPicturesFromImportantCases(callback);
 });
+
+
+test('Testing if you ge the correct case, getOneCase', done => {
+  function callback(status, data) {
+    console.log(
+      'Test callback: status=' + status + ', data=' + JSON.stringify(data)
+    );
+
+    expect(data[0].id).toBe(1);
+    done();
+  }
+
+  caseDao.getOneCase('1', callback);
+});
+
 
 test('Testing if first komment is created by user "ole"', done => {
   function callback(status, data) {
@@ -83,6 +99,6 @@ test('Testing if adding one comment works', done => {
     done();
   }
 
-  commentDao.addComment({brukernavn: "ole", kommentar: "kommentar", sak_id: "1"}, callback);
+  commentDao.addComment({ brukernavn: 'ole', kommentar: 'kommentar', sak_id: '1' }, callback);
 });
 
