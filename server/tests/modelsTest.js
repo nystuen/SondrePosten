@@ -168,8 +168,8 @@ test('Testing if adding one comment works', done => {
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
 
-    commentDao.addComment({ brukernavn: 'ole', kommentar: 'kommentar', sak_id: '2' }, callback);
   }
+    commentDao.addComment({ brukernavn: 'ole', kommentar: 'kommentar', sak_id: '2' }, callback);
 
   // after adding comment, check if this comment was added
   function callback2(status, data) {
