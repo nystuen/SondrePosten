@@ -1,6 +1,5 @@
 // @flow
 
-import { Students, sync } from '../src/models.js';
 import CaseDao from '../src/dao/casedao';
 import CommentDao from '../src/dao/commentdao';
 import mysql from 'mysql';
@@ -102,3 +101,36 @@ test('Testing if adding one comment works', done => {
   commentDao.addComment({ brukernavn: 'ole', kommentar: 'kommentar', sak_id: '1' }, callback);
 });
 
+test('Testing if you get 5 important cases for, getNewesCasesForLiveFeed', done => {
+  function callback(status, data) {
+    console.log(
+      'Test callback: status=' + status + ', data=' + JSON.stringify(data)
+    );
+
+    data.map(s => {
+      expect(s.viktighet).toBe(1);
+    });
+    expect(data.length).toBe(5);
+
+    done();
+  }
+
+  caseDao.getNewestCasesForLiveFeed(callback);
+});
+
+test('Testing if adding one case works', done => {
+  function callback(status, data) {
+    console.log(
+      'Test callback: status=' + status + ', data=' + JSON.stringify(data)
+    );
+
+    expect(data.affectedRows).toBeGreaterThanOrEqual(1);
+    done();
+  }
+
+  caseDao.regNewCase(
+    {aktiv: 1, overksrift: "overksrift", bildetekst: "bildetekst",
+      innhold: "innhold", tidspunkt: "tidspunkt", bilde:"bilde",
+      kategori:"sport", viktighet:1}, callback);
+
+});
