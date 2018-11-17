@@ -188,7 +188,7 @@ test('Testing if you get the correct number of likes, getLikesFromCase', done =>
     console.log(
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
-
+  // checking for 2 likes
     expect(data[0].likes).toBe(2);
     done();
   }
