@@ -164,11 +164,17 @@ test('Testing if adding one comment works', done => {
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
 
-    expect(data.affectedRows).toBeGreaterThanOrEqual(1);
+    // after adding comment, check if this comment was added
+    function callback2(status, data) {
+      expect(data.rows).toBe(1);
+    }
+
+    commentDao.getComments(2, callback2);
+
     done();
   }
 
-  commentDao.addComment({ brukernavn: 'ole', kommentar: 'kommentar', sak_id: '1' }, callback);
+  commentDao.addComment({ brukernavn: 'ole', kommentar: 'kommentar', sak_id: '2' }, callback);
 });
 
 // Test for ratingDao
