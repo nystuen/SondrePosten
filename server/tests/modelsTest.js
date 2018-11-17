@@ -82,14 +82,11 @@ test('Testing if you get 5 important cases for, getNewesCasesForLiveFeed', done 
     );
 
 
-    let i = 0;
-    data.map(s => {
-      i++;
-      expect(s.viktighet).toBe(1);
-      console.log('checking viktighet..');
-    });
+    expect(data.length).toBe(5);
 
-    expect(i).toBe(5);
+    data.map(s => {
+      expect(s.viktighet).toBe(1);
+    });
 
     done();
   }
