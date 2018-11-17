@@ -33,7 +33,7 @@ CREATE TABLE sak_rating (
 
 CREATE TABLE sak_kommentar_bruker (
  id int(11) NOT NULL AUTO_INCREMENT,
- sak_id int(11) NOT NULL,
+ sak_id int(11) DEFAULT NULL,
  brukernavn varchar(30) DEFAULT NULL,
  kommentar varchar(255) DEFAULT NULL,
  PRIMARY KEY (id),

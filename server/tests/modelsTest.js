@@ -17,7 +17,6 @@ let pool = mysql.createPool({
   multipleStatements: true
 });
 
-
 const caseDao = new CaseDao(pool);
 const commentDao = new CommentDao(pool);
 
