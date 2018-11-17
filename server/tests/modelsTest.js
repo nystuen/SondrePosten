@@ -107,10 +107,11 @@ test('Testing if you get 5 important cases for, getNewesCasesForLiveFeed', done 
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
 
+    expect(data.length).toBe(5);
+
     data.map(s => {
       expect(s.viktighet).toBe(1);
     });
-    expect(data.length).toBe(5);
 
     done();
   }
