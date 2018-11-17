@@ -128,26 +128,25 @@ test('Testing if deleting one case sets aktiv = 0, setCaseAsInactive', done => {
     console.log(
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
-    expect(data.affectedRows).toBeGreaterThanOrEqual(1);
-
-
-    function callback2(status, data) {
-      console.log(
-        'Test callback: status=' + status + ', data=' + JSON.stringify(data)
-      );
-
-      expect(data[0].aktiv).toBe(0);
-
-    }
-
-    caseDao.getOneCase('1', callback2);
-
-    done();
   }
 
   caseDao.setCaseAsInactive('1', callback1);
 
+  function callback2(status, data) {
+    console.log(
+      'Test callback: status=' + status + ', data=' + JSON.stringify(data)
+    );
+
+    expect(data[0].aktiv).toBe(0);
+
+  }
+
+  caseDao.getOneCase('1', callback2);
+
+  done();
 });
+
+;
 
 // Tests for commentDao
 
@@ -199,7 +198,7 @@ test('Testing if you get the correct number of likes, getLikesFromCase', done =>
   ratingDao.getLikesFromCase('1', callback);
 });
 
-test('Testing if you get the correct number of dislikeslikes, getDislikesFromCase', done => {
+test('Testing if you get the correct number of dislikes, getDislikesFromCase', done => {
   function callback(status, data) {
     console.log(
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
