@@ -38,7 +38,7 @@ module.exports = class CaseDao extends Dao {
 
   getHeadersAndPicturesFromImportantCases(callback: Function) {
     super.query(
-      'select id, overskrift, bilde from sak WHERE aktiv = 1 AND viktighet=1 ORDER BY `sak`.`tidspunkt` DESC',
+      'select viktighet, id, overskrift, bilde from sak WHERE aktiv = 1 AND viktighet=1 ORDER BY `sak`.`tidspunkt` DESC',
       [],
       callback
     );

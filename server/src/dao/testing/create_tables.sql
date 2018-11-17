@@ -7,7 +7,7 @@ CREATE TABLE kategori (
  kategori varchar(255) NOT NULL,
  PRIMARY KEY (kategori) USING BTREE,
  UNIQUE KEY kategori (kategori) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+);
 
  CREATE TABLE sak (
  id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -20,8 +20,7 @@ CREATE TABLE kategori (
  kategori varchar(255) NOT NULL,
  viktighet int(11) DEFAULT NULL,
  FOREIGN KEY (kategori) REFERENCES kategori(kategori)
-
-) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=latin1;
+);
 
 CREATE TABLE sak_rating (
  rating_id int(11) NOT NULL AUTO_INCREMENT,
@@ -29,7 +28,7 @@ CREATE TABLE sak_rating (
  rating int(11) DEFAULT NULL,
  PRIMARY KEY (rating_id),
  FOREIGN KEY (sak_id) REFERENCES sak(id)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
+);
 
 CREATE TABLE sak_kommentar_bruker (
  id int(11) NOT NULL AUTO_INCREMENT,
@@ -38,5 +37,4 @@ CREATE TABLE sak_kommentar_bruker (
  kommentar varchar(255) DEFAULT NULL,
  PRIMARY KEY (id),
  FOREIGN KEY (sak_id) REFERENCES sak(id)
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
-
+);
