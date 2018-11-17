@@ -146,8 +146,6 @@ test('Testing if deleting one case sets aktiv = 0, setCaseAsInactive', done => {
   done();
 });
 
-;
-
 // Tests for commentDao
 
 test('Testing if first comment is created by user "ole"', done => {
@@ -156,7 +154,7 @@ test('Testing if first comment is created by user "ole"', done => {
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
 
-    expect(data[0].brukernavn).toBe('ole');
+    expect(data[0].brukernavn).toEqual('ole');
     done();
   }
 
@@ -170,17 +168,17 @@ test('Testing if adding one comment works', done => {
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
 
-    // after adding comment, check if this comment was added
-    function callback2(status, data) {
-      expect(data.rows).toBe(1);
-    }
+    commentDao.addComment({ brukernavn: 'ole', kommentar: 'kommentar', sak_id: '2' }, callback);
+  }
 
-    commentDao.getComments(2, callback2);
+  // after adding comment, check if this comment was added
+  function callback2(status, data) {
+    expect(data.rows).toBe(1);
+  }
 
-    done();
-  };
+  commentDao.getComments(2, callback2);
 
-  commentDao.addComment({ brukernavn: 'ole', kommentar: 'kommentar', sak_id: '2' }, callback);
+  done();
 });
 
 // Test for ratingDao
@@ -218,15 +216,17 @@ test('Testing if liking one case works', done => {
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
 
-    // Then call getDislikes to check if it has increased by 1
-    function callback2(status, data) {
-      expect(data[0].likes).toBe(2);
-    }
-
-    ratingDao.getLikesFromCase('1', callback2);
-
-    done();
   }
 
   ratingDao.likeCase('1', callback);
+
+  // Then call getDislikes to check if it has increased by 1
+  function callback2(status, data) {
+    expect(data[0].likes).toBe(2);
+  }
+
+  ratingDao.getLikesFromCase('1', callback2);
+
+  done();
+
 });
