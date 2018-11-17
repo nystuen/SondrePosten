@@ -15,7 +15,7 @@ module.exports = class RatingDao extends Dao {
 
   getDislikesFromCase(id: string, callback: Function) {
     super.query(
-      'SELECT COUNT(*) AS dislikes FROM sak_rating WHERE rating =(-1) AND sak_id=?',
+      'SELECT COUNT(*) AS dislikes FROM sak_rating WHERE rating = (-1) AND sak_id=?',
       [id],
       callback
     );
