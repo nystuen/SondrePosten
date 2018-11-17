@@ -103,7 +103,15 @@ test('Testing if adding one case works', done => {
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
 
-    expect(data.affectedRows).toBeGreaterThanOrEqual(1);
+    // then check if amount of cases has increased by one
+
+    function callback2(status, data) {
+
+      expect(data.rows).toBe(8);
+    }
+
+    caseDao.getAllHeadersAndPictures(callback2);
+
     done();
   }
 
@@ -116,7 +124,7 @@ test('Testing if adding one case works', done => {
 
 });
 
-test('Testing if deletingone case sets aktiv = 0, setCaseAsInactive', done => {
+test('Testing if deleting one case sets aktiv = 0, setCaseAsInactive', done => {
   function callback1(status, data) {
     console.log(
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
@@ -212,8 +220,6 @@ test('Testing if liking one case works', done => {
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
 
-    expect(data.affectedRows).toBeGreaterThanOrEqual(1);
-
     // then call getDislikes to check if it has increased by 1
 
     function callback2(status, data){
@@ -234,9 +240,7 @@ test('Testing if disliking one case works', done => {
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
 
-    expect(data.affectedRows).toBeGreaterThanOrEqual(1);
-
-    // then call getDislikes to check if it has increased by 1
+    // Then call getDislikes to check if it has increased by 1
 
     function callback2(status, data){
       expect(data[0].dislikes).toBe(2);
