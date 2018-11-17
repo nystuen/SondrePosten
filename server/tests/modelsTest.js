@@ -29,6 +29,7 @@ afterAll(() => {
   pool.end();
 });
 
+// Test for caseDao
 
 test('Testing if you get all 5 categories, getAllFromOneKat', done => {
   function callback(status, data) {
@@ -60,7 +61,7 @@ test('Testing if only get important cases', done => {
 });
 
 
-test('Testing if you ge the correct case, getOneCase', done => {
+test('Testing if you get the correct case, getOneCase', done => {
   function callback(status, data) {
     console.log(
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
@@ -74,38 +75,13 @@ test('Testing if you ge the correct case, getOneCase', done => {
 });
 
 
-test('Testing if first komment is created by user "ole"', done => {
-  function callback(status, data) {
-    console.log(
-      'Test callback: status=' + status + ', data=' + JSON.stringify(data)
-    );
-
-    expect(data[0].brukernavn).toBe('ole');
-    done();
-  }
-
-  commentDao.getComments(1, callback);
-});
-
-
-test('Testing if adding one comment works', done => {
-  function callback(status, data) {
-    console.log(
-      'Test callback: status=' + status + ', data=' + JSON.stringify(data)
-    );
-
-    expect(data.affectedRows).toBeGreaterThanOrEqual(1);
-    done();
-  }
-
-  commentDao.addComment({ brukernavn: 'ole', kommentar: 'kommentar', sak_id: '1' }, callback);
-});
-
 test('Testing if you get 5 important cases for, getNewesCasesForLiveFeed', done => {
   function callback(status, data) {
     console.log(
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
+
+    console.log('-----------------------------\nlengdeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee: ' + data.length);
 
     expect(data.length).toBe(5);
 
@@ -118,6 +94,7 @@ test('Testing if you get 5 important cases for, getNewesCasesForLiveFeed', done 
 
   caseDao.getNewestCasesForLiveFeed(callback);
 });
+
 
 test('Testing if adding one case works', done => {
   function callback(status, data) {
@@ -163,3 +140,35 @@ test('Testing if deletingone case sets aktiv = 0, setCaseAsInactive', done => {
   caseDao.setCaseAsInactive('1', callback1);
 
 });
+
+// Tests for commentDao
+
+test('Testing if first comment is created by user "ole"', done => {
+  function callback(status, data) {
+    console.log(
+      'Test callback: status=' + status + ', data=' + JSON.stringify(data)
+    );
+
+    expect(data[0].brukernavn).toBe('ole');
+    done();
+  }
+
+  commentDao.getComments(1, callback);
+});
+
+
+test('Testing if adding one comment works', done => {
+  function callback(status, data) {
+    console.log(
+      'Test callback: status=' + status + ', data=' + JSON.stringify(data)
+    );
+
+    expect(data.affectedRows).toBeGreaterThanOrEqual(1);
+    done();
+  }
+
+  commentDao.addComment({ brukernavn: 'ole', kommentar: 'kommentar', sak_id: '1' }, callback);
+});
+
+// Test for ratingDao
+
