@@ -116,6 +116,7 @@ app.get('/api/dislikes/:id', (req: Request, res: Response) => {
 
   ratingDao.getDislikesFromCase(req.params.id, (status: number, data: Object) => {
     res.status(status);
+    console.log('dislikesServer: ', data[0].dislikes);
     res.json({ data: data });
   });
 });

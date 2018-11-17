@@ -179,7 +179,7 @@ test('Testing if adding one comment works', done => {
     commentDao.getComments(2, callback2);
 
     done();
-  }
+  };
 
   commentDao.addComment({ brukernavn: 'ole', kommentar: 'kommentar', sak_id: '2' }, callback);
 });
@@ -220,17 +220,16 @@ test('Testing if liking one case works', done => {
     );
 
     // Then call getDislikes to check if it has increased by 1
-
-    function callback2(status, data){
+    function callback2(status, data) {
       expect(data[0].likes).toBe(2);
     }
 
-    ratingDao.getLikesFromCase("1", callback2);
+    ratingDao.getLikesFromCase('1', callback2);
 
     done();
   }
 
-  ratingDao.likeCase("1", callback);
+  ratingDao.likeCase('1', callback);
 });
 
 test('Testing if disliking one case works', done => {
@@ -240,15 +239,15 @@ test('Testing if disliking one case works', done => {
     );
 
     // Then call getDislikes to check if it has increased by 1
-
-    function callback2(status, data){
+    function callback2(status, data) {
+      console.log('dataaaaaaaaaaa---------------------------\n:', data);
       expect(data[0].dislikes).toBe(2);
     }
 
-    ratingDao.getDislikesFromCase("1", callback2);
+    ratingDao.getDislikesFromCase('1', callback2);
 
     done();
   }
 
-  ratingDao.dislikeCase("1", callback);
+  ratingDao.dislikeCase('1', callback);
 });
