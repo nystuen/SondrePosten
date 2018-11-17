@@ -2,7 +2,7 @@
 
 import CaseDao from '../src/dao/casedao';
 import CommentDao from '../src/dao/commentdao';
-import RatingDao from '../src/dao/ratingDao';
+import RatingDao from '../src/dao/ratingdao';
 import mysql from 'mysql';
 import runsqlfile from '../src/dao/testing/runsqlfile';
 
