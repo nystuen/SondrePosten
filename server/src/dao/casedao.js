@@ -30,7 +30,7 @@ module.exports = class CaseDao extends Dao {
 
   getNewestCasesForLiveFeed(callback: Function) {
     super.query(
-      'SELECT id, overskrift, tidspunkt FROM sak WHERE aktiv = 1 ORDER BY `sak`.`tidspunkt` DESC limit 5',
+      'SELECT id, overskrift, tidspunkt, viktighet FROM sak WHERE aktiv = 1 ORDER BY `sak`.`tidspunkt` DESC limit 5',
       [],
       callback
     );
