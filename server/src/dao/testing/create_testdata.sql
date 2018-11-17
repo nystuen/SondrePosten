@@ -7,7 +7,7 @@ INSERT INTO sak (aktiv, bilde, bildetekst, innhold, kategori, overskrift, tidspu
 (1, 'www.bilde2.no.jpg', 'bidletekst2', 'innhold2', 'økonomi', 'overksrift2', 'tidspunkt2', 1),
 (0, 'www.bilde3.no.jpg', 'bidletekst3', 'innhold3', 'annet', 'overksrift3', 'tidspunkt3', 2),
 (1, 'www.bilde4.no.jpg', 'bidletekst4', 'innhold4', 'økonomi', 'overksrift4', 'tidspunkt2', 1),
-(1, 'www.bilde5.no.jpg', 'bidletekst5', 'innhold5', 'annet', 'overksrift5', 'tidspunkt3', 1);
+(1, 'www.bilde5.no.jpg', 'bidletekst5', 'innhold5', 'annet', 'overksrift5', 'tidspunkt3', 1),
 (1, 'www.bilde6.no.jpg', 'bidletekst6', 'innhold6', 'økonomi', 'overksrift6', 'tidspunkt2', 1),
 (1, 'www.bilde7.no.jpg', 'bidletekst7', 'innhold7', 'annet', 'overksrift7', 'tidspunkt3', 1);
 
