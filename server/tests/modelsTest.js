@@ -72,7 +72,7 @@ test('Testing if first komment is created by user "ole"', done => {
   commentDao.getComments(1, callback);
 });
 
-/*
+
 test('Testing if adding one comment works', done => {
   function callback(status, data) {
     console.log(
@@ -86,4 +86,3 @@ test('Testing if adding one comment works', done => {
   commentDao.addComment({brukernavn: "ole", kommentar: "kommentar", sak_id: "1"}, callback);
 });
 
-*/

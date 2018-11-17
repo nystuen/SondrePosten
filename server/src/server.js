@@ -92,7 +92,7 @@ app.get('/api/case/:id', (req: Request, res: Response) => {
 app.get('/api/comments/:id', (req: Request, res: Response) => {
   if (!(req.body instanceof Object)) return res.sendStatus(400);
 
-  commentDao.getComments(req.params.id, (status: number, data: Object) => {
+  commentDao.getComments(parseInt(req.params.id), (status: number, data: Object) => {
     res.status(status);
     res.json({ data: data });
   });
