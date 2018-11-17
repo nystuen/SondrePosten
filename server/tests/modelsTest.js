@@ -2,6 +2,7 @@
 
 import CaseDao from '../src/dao/casedao';
 import CommentDao from '../src/dao/commentdao';
+import RatingDao from '../src/dao/ratingDao';
 import mysql from 'mysql';
 import runsqlfile from '../src/dao/testing/runsqlfile';
 
@@ -18,6 +19,7 @@ let pool = mysql.createPool({
 
 const caseDao = new CaseDao(pool);
 const commentDao = new CommentDao(pool);
+const ratingDao = new RatingDao(pool);
 
 beforeAll(done => {
   runsqlfile('create_tables.sql', pool, () => {
@@ -171,3 +173,73 @@ test('Testing if adding one comment works', done => {
 
 // Test for ratingDao
 
+test('Testing if you get the correct number of likes, getLikesFromCase', done => {
+  function callback(status, data) {
+    console.log(
+      'Test callback: status=' + status + ', data=' + JSON.stringify(data)
+    );
+
+    expect(data[0].likes).toBe(2);
+    done();
+  }
+
+  ratingDao.getLikesFromCase('1', callback);
+});
+
+test('Testing if you get the correct number of dislikeslikes, getDislikesFromCase', done => {
+  function callback(status, data) {
+    console.log(
+      'Test callback: status=' + status + ', data=' + JSON.stringify(data)
+    );
+
+    expect(data[0].dislikes).toBe(1);
+    done();
+  }
+
+  ratingDao.getDislikesFromCase('1', callback);
+});
+
+
+test('Testing if liking one case works', done => {
+  function callback(status, data) {
+    console.log(
+      'Test callback: status=' + status + ', data=' + JSON.stringify(data)
+    );
+
+    expect(data.affectedRows).toBeGreaterThanOrEqual(1);
+
+    // then call getDislikes to check if it has increased by 1
+
+    function callback2(status, data){
+      expect(data[0].likes).toBe(2);
+    }
+
+    ratingDao.getLikesFromCase("1", callback2);
+
+    done();
+  }
+
+  ratingDao.likeCase("1", callback);
+});
+
+test('Testing if disliking one case works', done => {
+  function callback(status, data) {
+    console.log(
+      'Test callback: status=' + status + ', data=' + JSON.stringify(data)
+    );
+
+    expect(data.affectedRows).toBeGreaterThanOrEqual(1);
+
+    // then call getDislikes to check if it has increased by 1
+
+    function callback2(status, data){
+      expect(data[0].dislikes).toBe(2);
+    }
+
+    ratingDao.getDislikesFromCase("1", callback2);
+
+    done();
+  }
+
+  ratingDao.dislikeCase("1", callback);
+});
