@@ -103,8 +103,7 @@ test('Testing if adding one case works', done => {
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
 
-    // then check if amount of cases has increased by one
-
+    // Then check if amount of cases has increased by one
     function callback2(status, data) {
 
       expect(data.rows).toBe(8);
@@ -232,24 +231,4 @@ test('Testing if liking one case works', done => {
   }
 
   ratingDao.likeCase("1", callback);
-});
-
-test('Testing if disliking one case works', done => {
-  function callback(status, data) {
-    console.log(
-      'Test callback: status=' + status + ', data=' + JSON.stringify(data)
-    );
-
-    // Then call getDislikes to check if it has increased by 1
-
-    function callback2(status, data){
-      expect(data[0].dislikes).toBe(2);
-    }
-
-    ratingDao.getDislikesFromCase("1", callback2);
-
-    done();
-  }
-
-  ratingDao.dislikeCase("1", callback);
 });
