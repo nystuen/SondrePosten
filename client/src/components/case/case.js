@@ -9,6 +9,7 @@ import { Comments } from '../comment/comments';
 import { Button } from '../button/button';
 import css from './case.css';
 import { CaseObject } from '../types/types';
+import { NavLink } from 'react-router-dom';
 
 export class Case extends Component<{ match: { params: { id: number } } }> {
   cases: CaseObject[] = [];
@@ -33,9 +34,12 @@ export class Case extends Component<{ match: { params: { id: number } } }> {
 
         <Comments id={this.props.match.params.id}/>
         {/*} <Comments id={this.props.match.params.id}/> {*/}
-          <Button id="deleteCase" type="danger" onClick={() => {
-            this.slettSak(this.props.match.params.id);
-          }} href={''}>Slett denne saken</Button>
+
+        <Button id="deleteCase" type="danger" onClick={() => {
+          this.slettSak(this.props.match.params.id);
+        }} href={''}>Slett denne saken</Button>
+
+        <NavLink className="btn btn-light" to={'/endre/' + this.props.match.params.id}>Endre sak</NavLink>
       </div>
     );
   }

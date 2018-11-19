@@ -10,7 +10,7 @@ import sinonChai from 'sinon-chai';
 import { Button } from '../src/components/button/button';
 chai.use(sinonChai);
 
-/*
+
 
 describe('Test for Button component', () => {
   let wrapper, buttonType, buttonSpy, children;
@@ -65,4 +65,3 @@ describe('Alert tests', () => {
   });
 });
 
-*/

@@ -205,7 +205,37 @@ app.post('/api/dislikeCase/:id', (req: Request, res: Response) => {
 });
 
 
-// Put
+// ---Put---
+
+// Update case
+
+app.put('/api/editCase/:id', (req: Request, res: Response) => {
+  if (!(req.body instanceof Object)) return res.sendStatus(400);
+
+  let json = {
+    // $FlowFixMe
+    'overskrift': req.body.overskrift,
+    // $FlowFixMe
+    'innhold': req.body.innhold,
+    // $FlowFixMe
+    'bildetekst': req.body.bildetekst,
+    // $FlowFixMe
+    'bilde': req.body.bilde,
+    // $FlowFixMe
+    'kategori': req.body.kategori,
+    // $FlowFixMe
+    'viktighet': req.body.viktighet,
+    // $FlowFixMe
+    'id': req.paramd.id
+  };
+
+  caseDao.editCase((json: Object), (status: number, data: Object) => {
+    console.log('sak ' + req.params.id + ' er endret.');
+    res.status(status);
+  });
+});
+
+
 
 // Delete (set aktiv=0)
 app.put('/api/deleteCase/:id', (req: Request, res: Response) => {

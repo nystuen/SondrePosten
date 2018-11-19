@@ -32,11 +32,11 @@ export class LiveFeed extends Component {
 
   render() {
     return (
-      <div className="liveFeed sticky-top" behavior="alternate" scrollamount="1">
-        <marquee>
+      <div className="liveFeed sticky-top">
+        <marquee truespeed="true" scrolldelay="50">
           <div className="marqueeContent">
             {this.cases.map(thisCase => (
-              <a href={"/kat"}><span key={thisCase.id}>{thisCase.overskrift} ({thisCase.tidspunkt})</span></a>
+              <NavLink exact to={"/sak/" + thisCase.id}><span key={thisCase.id}>{thisCase.overskrift} ({thisCase.tidspunkt})</span></NavLink>
             ))}
           </div>
         </marquee>

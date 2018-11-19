@@ -22,7 +22,7 @@ module.exports = class CaseDao extends Dao {
 
   getOneCase(id: string, callback: Function) {
     super.query(
-      'select id, overskrift, bildetekst, bilde, innhold, tidspunkt FROM sak WHERE aktiv = 1 AND id=?',
+      'select id, kategori, viktighet, overskrift, bildetekst, bilde, innhold, tidspunkt FROM sak WHERE aktiv = 1 AND id=?',
       [id],
       callback
     );
@@ -46,7 +46,6 @@ module.exports = class CaseDao extends Dao {
 
   regNewCase(json: Object, callback: Function) {
     let val = [json.overskrift, json.bildetekst, json.innhold, json.tidspunkt, json.bilde, json.kategori, json.viktighet];
-    console.log('overksrift: ', val[0]);
     super.query(
       'insert into sak (aktiv, overskrift, bildetekst, innhold, tidspunkt, bilde, kategori, viktighet) values (1, ?,?,?,?,?,?,?)',
       val,
@@ -66,6 +65,23 @@ module.exports = class CaseDao extends Dao {
     super.query(
       'UPDATE sak SET aktiv = 0 WHERE id=?',
       [id],
+      callback
+    );
+  }
+
+  editCase(json: Object, callback: Function) {
+    let val = [json.overskrift, json.bildetekst, json.innhold, json.bilde, json.kategori, json.viktighet, json.id];
+    console.log('id: ', json.id);
+    super.query(
+      'UPDATE sak SET\n' +
+      '  overskrift =?,\n' +
+      '  bildetekst =?,\n' +
+      '  innhold =?,\n' +
+      '  bilde =?,\n' +
+      '  kategori =?,\n' +
+      ' viktighet = ?\n' +
+      '  WHERE sak.id=?;',
+      val,
       callback
     );
   }

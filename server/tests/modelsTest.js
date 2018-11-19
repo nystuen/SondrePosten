@@ -33,7 +33,7 @@ afterAll(() => {
 
 // Test for caseDao
 
-test('Testing if you get all 5 categories, getAllFromOneKat', done => {
+test('Testing if you get all 5 categoriesList, getAllFromOneKat', done => {
   function callback(status, data) {
     console.log(
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
@@ -215,7 +215,6 @@ test('Testing if liking one case works', done => {
     console.log(
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
-
   }
 
   ratingDao.likeCase('1', callback);
@@ -230,3 +229,4 @@ test('Testing if liking one case works', done => {
   done();
 
 });
+

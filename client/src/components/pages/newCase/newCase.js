@@ -3,14 +3,14 @@
 import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
 import * as React from 'react';
-import './newCase.css';
+import '../editCase/newCase.css';
 import { TextHeader } from '../../textHeader/textHeader';
 import { caseService } from '../../../services';
 import { history } from '../../../index';
 import { CaseObject, Category } from '../../types/types';
 import { Alert } from '../../../widgets';
 import { Button } from '../../button/button';
-import { CategoriesList } from '../../categories/categoriesList';
+import { CategoriesList } from '../../categoriesList/categoriesList';
 
 
 export class NewCase extends Component {
@@ -97,7 +97,7 @@ export class NewCase extends Component {
         <div className="row">
           <div className="form-group col-md-6">
             <label htmlFor="sel1">Kategorier</label>
-            <CategoriesList/>
+            <CategoriesList />
           </div>
 
           <div className="form-group col-md-6">

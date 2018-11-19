@@ -14,6 +14,7 @@ import {Footer} from "./components/footer/footer";
 import {Category} from "./components/pages/category/category";
 import {NewCase} from "./components/pages/newCase/newCase";
 import {ImportantCases} from './components/pages/importantCases/importantCases';
+import {EditCase} from './components/pages/editCase/editCase';
 
 // Reload application when not in production environment
 if (process.env.NODE_ENV !== 'production') {
@@ -39,6 +40,7 @@ if (root)
                 <Route path="/reg" component={NewCase}/>
                 <Route exact path="/sak/:id" component={Case}/>
                 <Route exact path="/kat/:kat" component={Category}/>
+                <Route exact path="/endre/:id" component={EditCase} />
                 <Footer/>
 
             </div>

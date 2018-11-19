@@ -15,7 +15,6 @@ export class Category extends Component<{ match: { params: { kat: string } } }> 
   cases: CaseObject[] = [];
   amountOfCases: number = -1;
 
-
   componentDidMount() {
     caseService
       .getAllFromOneKat(this.props.match.params.kat)
