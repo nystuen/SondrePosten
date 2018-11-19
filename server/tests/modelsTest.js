@@ -31,7 +31,7 @@ afterAll(() => {
   pool.end();
 });
 
-// Test for caseDao
+// --Test for caseDao--
 
 test('Testing if you get all 5 categoriesList, getAllFromOneKat', done => {
   function callback(status, data) {
@@ -145,7 +145,7 @@ test('Testing if deleting one case sets aktiv = 0, setCaseAsInactive', done => {
 });
 
 
-// Tests for commentDao
+// ---Tests for commentDao---
 
 test('Testing if first comment is created by user "ole"', done => {
   function callback(status, data) {
@@ -166,7 +166,6 @@ test('Testing if adding one comment works', done => {
     console.log(
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
-
   }
 
   commentDao.addComment({ brukernavn: 'ole', kommentar: 'kommentar', sak_id: '2' }, callback);
@@ -182,7 +181,7 @@ test('Testing if adding one comment works', done => {
 });
 
 
-// Test for ratingDao
+// ---Test for ratingDao---
 
 test('Testing if you get the correct number of likes, getLikesFromCase', done => {
   function callback(status, data) {
