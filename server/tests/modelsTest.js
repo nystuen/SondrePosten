@@ -182,7 +182,7 @@ test('Testing if adding one comment works', done => {
   done();
 });
 
-/*
+
 
 // Test for ratingDao
 
@@ -193,10 +193,10 @@ test('Testing if you get the correct number of likes, getLikesFromCase', done =>
     );
     // checking for 2 likes
     expect(data.likes).toBe(2);
-    done();
   }
 
   ratingDao.getLikesFromCase('1', callback);
+    done();
 });
 
 test('Testing if you get the correct number of dislikes, getDislikesFromCase', done => {
@@ -206,10 +206,10 @@ test('Testing if you get the correct number of dislikes, getDislikesFromCase', d
     );
 
     expect(data.dislikes).toBe(1);
-    done();
   }
 
   ratingDao.getDislikesFromCase('1', callback);
+    done();
 });
 
 
@@ -233,4 +233,3 @@ test('Testing if liking one case works', done => {
 
 });
 
-*/
