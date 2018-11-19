@@ -154,10 +154,10 @@ test('Testing if first comment is created by user "ole"', done => {
     );
 
     expect(data[0].brukernavn).toEqual('ole');
-    done();
   }
 
   commentDao.getComments(1, callback);
+  done();
 });
 /*
 
