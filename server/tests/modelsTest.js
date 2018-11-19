@@ -182,19 +182,19 @@ test('Testing if adding one comment works', done => {
 });
 
 // Test for ratingDao
-/*
+
 test('Testing if you get the correct number of likes, getLikesFromCase', done => {
   function callback(status, data) {
     console.log(
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
   // checking for 2 likes
-    expect(data[0].likes).toBe(2);
+    expect(data.likes).toBe(2);
     done();
   }
 
   ratingDao.getLikesFromCase('1', callback);
-});*/
+});
 
 test('Testing if you get the correct number of dislikes, getDislikesFromCase', done => {
   function callback(status, data) {
@@ -202,7 +202,7 @@ test('Testing if you get the correct number of dislikes, getDislikesFromCase', d
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
 
-    expect(data[0].dislikes).toBe(1);
+    expect(data.dislikes).toBe(1);
     done();
   }
 
@@ -221,7 +221,7 @@ test('Testing if liking one case works', done => {
 
   // Then call getDislikes to check if it has increased by 1
   function callback2(status, data) {
-    expect(data[0].likes).toBe(2);
+    expect(data.likes).toBe(2);
   }
 
   ratingDao.getLikesFromCase('1', callback2);
