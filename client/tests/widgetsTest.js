@@ -30,9 +30,7 @@ describe('Test for Button component', () => {
     wrapper.find("#button").simulate('click');
     expect(buttonSpy.called);
   });
-
 });
-
 
 describe('Alert tests', () => {
   const wrapper = shallow(<Alert />);
