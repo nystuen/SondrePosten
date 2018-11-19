@@ -41,10 +41,10 @@ test('Testing if you get all 5 categoriesList, getAllFromOneKat', done => {
     expect(data.length).toBe(5);
     expect(data[0].kategori).toBe('økonomi');
 
-    done();
   }
 
   caseDao.getCategories(callback);
+  done();
 });
 
 test('Testing if only get important cases', done => {
@@ -56,10 +56,10 @@ test('Testing if only get important cases', done => {
     data.map(s => {
       expect(s.viktighet).toBe(1);
     });
-    done();
   }
 
   caseDao.getHeadersAndPicturesFromImportantCases(callback);
+  done();
 });
 
 
@@ -70,10 +70,10 @@ test('Testing if you get the correct case, getOneCase', done => {
     );
 
     expect(data[0].id).toBe(1);
-    done();
   }
 
   caseDao.getOneCase('1', callback);
+  done();
 });
 
 
@@ -90,10 +90,10 @@ test('Testing if you get 5 important cases for, getNewesCasesForLiveFeed', done 
       expect(s.viktighet).toBe(1);
     });
 
-    done();
   }
 
   caseDao.getNewestCasesForLiveFeed(callback);
+  done();
 });
 
 
@@ -111,7 +111,6 @@ test('Testing if adding one case works', done => {
 
     caseDao.getAllHeadersAndPictures(callback2);
 
-    done();
   }
 
   caseDao.regNewCase(
@@ -121,6 +120,7 @@ test('Testing if adding one case works', done => {
       kategori: 'sport', viktighet: 1
     }, callback);
 
+  done();
 });
 
 test('Testing if deleting one case sets aktiv = 0, setCaseAsInactive', done => {
