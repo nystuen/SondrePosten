@@ -182,7 +182,7 @@ test('Testing if adding one comment works', done => {
 });
 
 // Test for ratingDao
-
+/*
 test('Testing if you get the correct number of likes, getLikesFromCase', done => {
   function callback(status, data) {
     console.log(
@@ -194,7 +194,7 @@ test('Testing if you get the correct number of likes, getLikesFromCase', done =>
   }
 
   ratingDao.getLikesFromCase('1', callback);
-});
+});*/
 
 test('Testing if you get the correct number of dislikes, getDislikesFromCase', done => {
   function callback(status, data) {
@@ -209,7 +209,7 @@ test('Testing if you get the correct number of dislikes, getDislikesFromCase', d
   ratingDao.getDislikesFromCase('1', callback);
 });
 
-/*
+
 test('Testing if liking one case works', done => {
   function callback(status, data) {
     console.log(
@@ -230,4 +230,3 @@ test('Testing if liking one case works', done => {
 
 });
 
-*/
