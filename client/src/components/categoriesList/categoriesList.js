@@ -7,7 +7,7 @@ import { caseService } from '../../services';
 import { Category } from '../types/types';
 
 
-export class CategoriesList extends Component<{ currentCat: ?string }> {
+export class CategoriesList extends Component<{ currentCat?: string }> {
   categories: Category[] = [];
 
   componentDidMount() {
@@ -24,11 +24,15 @@ export class CategoriesList extends Component<{ currentCat: ?string }> {
       <div>
         <select className="form-control" id="kat" >
         {this.categories.map(s => (
-          (this.props.currentCat == s.kategori) ? (
-            <option selected="selected"> {s.kategori} </option>
-          ) : (
-            <option> {s.kategori}</option>
-          )
+
+            (this.props.currentCat == s.kategori) ? (
+              <option selected="selected"> {s.kategori} </option>
+            ) : (
+              <option> {s.kategori}</option>
+            )
+
+
+
         ))}
         </select>
       </div>

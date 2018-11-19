@@ -136,9 +136,7 @@ test('Testing if deleting one case sets aktiv = 0, setCaseAsInactive', done => {
     console.log(
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
-
     expect(data[0].aktiv).toBe(0);
-
   }
 
   caseDao.getOneCase('1', callback2);
@@ -146,6 +144,7 @@ test('Testing if deleting one case sets aktiv = 0, setCaseAsInactive', done => {
   done();
 });
 
+/*
 // Tests for commentDao
 
 test('Testing if first comment is created by user "ole"', done => {
@@ -169,7 +168,8 @@ test('Testing if adding one comment works', done => {
     );
 
   }
-    commentDao.addComment({ brukernavn: 'ole', kommentar: 'kommentar', sak_id: '2' }, callback);
+
+  commentDao.addComment({ brukernavn: 'ole', kommentar: 'kommentar', sak_id: '2' }, callback);
 
   // after adding comment, check if this comment was added
   function callback2(status, data) {
@@ -188,7 +188,7 @@ test('Testing if you get the correct number of likes, getLikesFromCase', done =>
     console.log(
       'Test callback: status=' + status + ', data=' + JSON.stringify(data)
     );
-  // checking for 2 likes
+    // checking for 2 likes
     expect(data.likes).toBe(2);
     done();
   }
@@ -230,3 +230,4 @@ test('Testing if liking one case works', done => {
 
 });
 
+*/
