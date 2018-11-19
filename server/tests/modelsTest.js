@@ -144,7 +144,7 @@ test('Testing if deleting one case sets aktiv = 0, setCaseAsInactive', done => {
   done();
 });
 
-/*
+
 // Tests for commentDao
 
 test('Testing if first comment is created by user "ole"', done => {
@@ -159,7 +159,7 @@ test('Testing if first comment is created by user "ole"', done => {
 
   commentDao.getComments(1, callback);
 });
-
+/*
 
 test('Testing if adding one comment works', done => {
   function callback(status, data) {
