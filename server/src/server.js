@@ -122,9 +122,6 @@ app.get('/api/dislikes/:id', (req: Request, res: Response) => {
 });
 
 
-
-
-
 // ---Post---
 
 // Add new case
@@ -236,7 +233,6 @@ app.put('/api/editCase/:id', (req: Request, res: Response) => {
 });
 
 
-
 // Delete (set aktiv=0)
 app.put('/api/deleteCase/:id', (req: Request, res: Response) => {
   if (!(req.body instanceof Object)) return res.sendStatus(400);
@@ -246,7 +242,6 @@ app.put('/api/deleteCase/:id', (req: Request, res: Response) => {
     res.status(status);
   });
 });
-
 
 
 // Hot reload application when not in production environment

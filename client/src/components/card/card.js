@@ -69,12 +69,12 @@ export class Card extends Component<{
 
               <div className="mr-auto p-2 "><p>Lansert: {this.props.case.tidspunkt}</p></div>
               <div className="p-2">
-                <Button type="success" onClick={() => {
+                <Button type="success" id="likeBtn" onClick={() => {
                   this.handleLike();
                 }}>{this.likes} <i className="fas fa-thumbs-up"></i></Button>
               </div>
               <div className="p-2">
-                <Button type="danger" onClick={() => {
+                <Button type="danger" id="dislikeBtn" onClick={() => {
                   this.handleDislike();
                 }}>{this.dislikes} <i className="fas fa-thumbs-down"></i></Button>
               </div>

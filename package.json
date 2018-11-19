@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "coveralls": "jest --coverage && cat .client/tests/coverage/lcov.info | coveralls"
+  },
+  "dependencies": {
+    "enzyme-adapter-react-16": "^1.7.0"
   }
 }

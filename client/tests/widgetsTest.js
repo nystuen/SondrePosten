@@ -8,8 +8,12 @@ import chai, { expect } from 'chai';
 import { spy } from 'sinon';
 import sinonChai from 'sinon-chai';
 import { Button } from '../src/components/button/button';
+import { NewCase } from '../src/components/pages/newCase/newCase';
+import { CardPreview } from '../src/components/card/cardPreview';
+import Card from '../src/components/card/card';
+import { CaseFeed } from '../src/components/caseFeed/caseFeed';
+import { caseService } from '../src/services';
 chai.use(sinonChai);
-
 
 
 describe('Test for Button component', () => {
@@ -19,28 +23,29 @@ describe('Test for Button component', () => {
     buttonType = 'danger';
     buttonSpy = spy();
     children = 'clickMe';
-    wrapper = shallow(<Button type={buttonType} onClick={() => buttonSpy}>children</Button>);
+    wrapper = shallow(<Button id="button" type={buttonType} onClick={() => buttonSpy}>children</Button>);
   });
 
-  it('calls onclick function when clicked', () => {
-    expect(wrapper.find('#button').children()).toHaveLength(children.length);
+  it('Testing clicking button', () => {
+    wrapper.find("#button").simulate('click');
+    expect(buttonSpy.called);
   });
 
 });
 
 
 describe('Alert tests', () => {
-  const wrapper = shallow(<Alert/>);
+  const wrapper = shallow(<Alert />);
 
   it('initially', () => {
     let instance: ?Alert = Alert.instance();
     expect(typeof instance).toEqual('object');
     if (instance) expect(instance.alerts).toEqual([]);
 
-    expect(wrapper.find('button. close')).toHaveLength(0);
+    expect(wrapper.find('button.close')).toHaveLength(0);
   });
 
-  it('a ', done => {
+  it('after danger', done => {
     Alert.danger('test');
 
     setTimeout(() => {
@@ -64,4 +69,3 @@ describe('Alert tests', () => {
     expect(wrapper.find('button.close')).toHaveLength(0);
   });
 });
-
