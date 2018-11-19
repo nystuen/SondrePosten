@@ -159,7 +159,8 @@ test('Testing if first comment is created by user "ole"', done => {
   commentDao.getComments(1, callback);
   done();
 });
-/*
+
+
 
 test('Testing if adding one comment works', done => {
   function callback(status, data) {
@@ -180,6 +181,8 @@ test('Testing if adding one comment works', done => {
 
   done();
 });
+
+/*
 
 // Test for ratingDao
 
