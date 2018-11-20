@@ -13,7 +13,7 @@ import { CardPreview } from '../src/components/card/cardPreview';
 import Card from '../src/components/card/card';
 import { CaseFeed } from '../src/components/caseFeed/caseFeed';
 import { caseService } from '../src/services';
-import {CaseObject} from '../src/components/types/types';
+import { CaseObject } from '../src/components/types/types';
 
 chai.use(sinonChai);
 
@@ -22,7 +22,7 @@ describe('Testing card', () => {
 
   beforeEach(() => {
 
-    let aCase = new CaseObject("overskrift", "bildeadresse.jpg", "bildetekst", "innhold", "sport", 1);
+    let aCase = new CaseObject('overskrift', 'bildeadresse.jpg', 'bildetekst', 'innhold', 'sport', 1);
 
     /*aCase = {
       'kategori': 'annet',
@@ -37,37 +37,26 @@ describe('Testing card', () => {
   });
 
   it('Testing if the cardpreview contains overskrift', () => {
-    expect(wrapper.find("card-title").text()).toEqual('Karpe til Festningen-festival');
+    expect(wrapper.find('card-title').text()).toEqual('Karpe til Festningen-festival');
 
   });
 
   it('Testing if the cardpreview contains an image', () => {
-    expect(wrapper.find("card-img-top").text()).toEqual('bildeadresse.jpg');
+    expect(wrapper.find('card-img-top').text()).toEqual('bildeadresse.jpg');
   });
 
   it('Testing if the cardpreview', () => {
-    expect(wrapper.find("card-img-top").text()).toEqual('bildeadresse.jpg');
+    expect(wrapper.find('card-img-top').text()).toEqual('bildeadresse.jpg');
+  });
+
+  it('Testing if CardPreview\'s case prop is equal to the case passed in.', () => {
+    expect(wrapper.prop('case')).toEqual(aCase);
+
   });
 
 });
 
-describe('Test for Button component', () => {
-  let wrapper, buttonType, buttonSpy, children;
-// type = danger,, onClick = functin, children
-  beforeEach(() => {
-    buttonType = 'danger';
-    buttonSpy = spy();
-    children = 'clickMe';
-    wrapper = shallow(<Button id="button" type={buttonType} onClick={() => buttonSpy}>children</Button>);
-  });
 
-  it('Testing clicking button', () => {
-    wrapper.find('#button').simulate('click');
-    expect(buttonSpy.called);
-  });
-
-
-});
 
 
 describe('Alert tests', () => {
