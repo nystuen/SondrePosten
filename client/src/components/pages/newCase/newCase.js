@@ -19,7 +19,7 @@ export class NewCase extends Component {
   bildeValue = '';
   bildetekstValue = '';
   innholdValue = '';
-  viktighetValue = -1;
+  viktighetValue = '';
 
   validateForm = () => {
     return (
@@ -27,7 +27,7 @@ export class NewCase extends Component {
       this.bildeValue !== '' &&
       this.bildetekstValue !== '' &&
       this.innholdValue !== '' &&
-      this.viktighetValue !== -1
+      this.viktighetValue !== ''
     );
   };
 
@@ -43,6 +43,7 @@ export class NewCase extends Component {
         this.bildetekstValue,
         this.innholdValue,
         katValue,
+        // $FlowFixMe
         this.viktighetValue
       );
 
@@ -151,7 +152,7 @@ export class NewCase extends Component {
               name="viktighet"
               onChange={evt => (this.viktighetValue = evt.target.value)}
             >
-              <option value={-1}>Velg viktighet</option>
+              <option value="">Velg viktighet</option>
               <option value={1}>Viktig</option>
               <option value={2}>Ikke like viktig</option>
             </select>

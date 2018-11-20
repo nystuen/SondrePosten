@@ -21,7 +21,7 @@ export class EditCase extends Component<{ match: { params: { id: number } } }> {
   bildeValue = '';
   bildetekstValue = '';
   innholdValue = '';
-  viktighetValue = -1;
+  viktighetValue = '';
 
   validateForm = () => {
     return (
@@ -29,7 +29,7 @@ export class EditCase extends Component<{ match: { params: { id: number } } }> {
       this.bildeValue !== '' &&
       this.bildetekstValue !== '' &&
       this.innholdValue !== '' &&
-      this.viktighetValue !== -1
+      this.viktighetValue !== ''
     );
   };
 
@@ -196,6 +196,7 @@ export class EditCase extends Component<{ match: { params: { id: number } } }> {
                   defaultValue={s.viktighet}
                   onChange={evt => (this.viktighetValue = evt.target.value)}
                 >
+                  <option value=''>Velg viktighet</option>
                   <option name="viktig" value={1}>
                     Viktig
                   </option>

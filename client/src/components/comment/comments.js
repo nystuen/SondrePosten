@@ -58,7 +58,7 @@ export class Comments extends Component<{ id: number }> {
               <h4>Legg til en kommentar</h4>
             </div>
             <div className="card-block">
-              <input placeholder="Brukernavn" type="text" className="form-control" id="brukernavnInput" />
+              <input  placeholder="Brukernavn" type="text" className="form-control" id="brukernavnInput" />
             </div>
             <div className="card-block">
               <textarea placeholder="Kommentar" className="form-control" rows="5" id="kommentarInput" />
