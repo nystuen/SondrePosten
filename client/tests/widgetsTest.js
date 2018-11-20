@@ -39,7 +39,9 @@ describe('Testing cardPreview', () => {
     expect(wrapper.find("#linkBtn").prop('to')).toEqual('/sak/1');
   });
 
-
+  it('Testing if CardPreview\'s case prop is equal to the case passed in.', () => {
+    expect(wrapper.instance().props.case).toEqual(aCase);
+  });
 
 });
 
@@ -57,8 +59,6 @@ describe('Test for Button component', () => {
     wrapper.find('#button').simulate('click');
     expect(buttonSpy.called);
   });
-
-
 });
 
 
