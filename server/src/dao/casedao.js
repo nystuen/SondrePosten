@@ -69,7 +69,7 @@ module.exports = class CaseDao extends Dao {
     );
   }
 
-  editCase(json: Object,id: number, callback: Function) {
+  editCase(json: Object, id: number, callback: Function) {
     let val = [json.overskrift, json.bildetekst, json.innhold, json.bilde, json.kategori, json.viktighet, id];
     super.query(
       'UPDATE sak SET overskrift=?, bildetekst=?, innhold=?, bilde=?, kategori=?, viktighet= ? WHERE id=?;',

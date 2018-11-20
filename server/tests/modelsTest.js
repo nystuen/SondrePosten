@@ -40,7 +40,6 @@ test('Testing if you get all 5 categoriesList, getAllFromOneKat', done => {
     );
     expect(data.length).toBe(5);
     expect(data[0].kategori).toBe('økonomi');
-
   }
 
   caseDao.getCategories(callback);

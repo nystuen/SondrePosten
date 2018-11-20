@@ -1,9 +1,5 @@
 .amountOfCases{
-    padding-top: 1em;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    justify-items: center;
+
 }
 
 
