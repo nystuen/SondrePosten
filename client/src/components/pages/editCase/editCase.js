@@ -83,6 +83,7 @@ export class EditCase extends Component<{ match: { params: { id: number } } }> {
         this.bildetekstValue,
         this.innholdValue,
         katValue,
+        // $FlowFixMe
         this.viktighetValue
       );
 
