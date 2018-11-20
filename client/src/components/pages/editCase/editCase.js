@@ -3,7 +3,7 @@
 import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
 import * as React from 'react';
-import '../editCase/newCase.css';
+import '../newCase/newCase.css';
 import { TextHeader } from '../../textHeader/textHeader';
 import { caseService } from '../../../services';
 import { history } from '../../../index';
@@ -17,7 +17,6 @@ import Card from '../../card/card';
 export class EditCase extends Component<{ match: { params: { id: number } } }> {
 
   cases: CaseObject[] = [];
-  id = this.props.match.params.id;
 
   componentDidMount() {
     caseService
@@ -53,14 +52,19 @@ export class EditCase extends Component<{ match: { params: { id: number } } }> {
     };
     */
 
-    let newCase = new CaseObject(overskriftValue, bildeValue, bildetekstValue, innholdValue, katValue, viktighetValue);
-    newCase.id = this.id;
+    let newCase = new CaseObject(
+      overskriftValue,
+      bildeValue,
+      bildetekstValue,
+      innholdValue,
+      katValue,
+      viktighetValue);
 
+    console.log('DETTE ER EN ID', newCase.id);
 
     caseService
-      .editCase(newCase)
-      .then(Alert.success('Endringene er lagret.'))
-      .then(history.push('/case/' + this.id))
+      .editCase(newCase, this.props.match.params.id)
+      .then(history.push('/sak/' + this.props.match.params.id))
       .catch((error: Error) => Alert.danger(error.message));
 
   };

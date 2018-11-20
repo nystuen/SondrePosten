@@ -28,7 +28,7 @@ export class CaseFeed extends Component<{ title: string, cases: CaseObject[] }> 
         <div className="container-large amountOfCases">
           <p>Viser {this.props.cases.slice(0, this.amountOfCases).length} av {this.props.cases.length}</p>
 
-          {(this.amountOfCases === this.props.cases.slice(0, this.amountOfCases).length) ? (
+          {(this.amountOfCases < this.props.cases.length) ? (
 
             <Button id="loadMoreButton" type="success" onClick={() => {
               this.loadMore();

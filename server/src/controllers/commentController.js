@@ -18,17 +18,7 @@ module.exports = function(app, commentDao) {
 
     if (!(req.body instanceof Object)) return res.sendStatus(400);
 
-    let json = {
-      // $FlowFixMe
-      'sak_id': req.body.sak_id,
-      // $FlowFixMe
-      'brukernavn': req.body.brukernavn,
-      // $FlowFixMe
-      'kommentar': req.body.kommentar
-    };
-
-    commentDao.addComment((json: Object), (status: number, data: Object) => {
-      console.log('added comment.');
+    commentDao.addComment(req.body, (status: number, data: Object) => {
       res.status(status);
     });
   });

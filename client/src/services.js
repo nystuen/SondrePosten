@@ -47,8 +47,8 @@ class CaseService {
     return axios.post('/api/reg', newCase);
   }
 
-  editCase(updatedCase: CaseObject): Promise<Response> {
-    return axios.put('/api/editCase/' + updatedCase.id, updatedCase);
+  editCase(updatedCase: CaseObject, id: number): Promise<Response> {
+    return axios.put('/api/editCase/' + id, updatedCase);
   }
 
   addComment(newComment: CommentObject): Promise<Response> {

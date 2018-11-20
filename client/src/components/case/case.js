@@ -10,6 +10,7 @@ import { Button } from '../button/button';
 import css from './case.css';
 import { CaseObject } from '../types/types';
 import { NavLink } from 'react-router-dom';
+import { history } from '../../index';
 
 export class Case extends Component<{ match: { params: { id: number } } }> {
   cases: CaseObject[] = [];
@@ -32,14 +33,15 @@ export class Case extends Component<{ match: { params: { id: number } } }> {
           ))}
         </div>
 
+        {/* Collapsable admin panel, opens by cog-wheel in card.js */}
+        <div className="collapse" id="admin">
+          <Button id="deleteCase" type="danger" onClick={() => {
+            this.slettSak(this.props.match.params.id);
+          }} href={''}>Slett denne saken</Button>
+          <NavLink className="btn btn-danger" to={'/endre/' + this.props.match.params.id}>Endre sak</NavLink>
+        </div>
+
         <Comments id={this.props.match.params.id}/>
-        {/*} <Comments id={this.props.match.params.id}/> {*/}
-
-        <Button id="deleteCase" type="danger" onClick={() => {
-          this.slettSak(this.props.match.params.id);
-        }} href={''}>Slett denne saken</Button>
-
-        <NavLink className="btn btn-light" to={'/endre/' + this.props.match.params.id}>Endre sak</NavLink>
       </div>
     );
   }
@@ -49,6 +51,7 @@ export class Case extends Component<{ match: { params: { id: number } } }> {
       caseService
         .deleteOneCase(id)
         .then(Alert.success('Sak slettet.'))
+        .then(history.push('/'))
         .catch((error: Error) => Alert.danger(error.message));
     } else {
       Alert.danger('Sak ble ikke slettet allikevel.');

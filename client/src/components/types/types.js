@@ -2,7 +2,7 @@
 
 
 export class CaseObject {
-  id: number;
+  id: ?number;
   overskrift: string;
   bilde: string;
   bildetekst: string;
@@ -18,13 +18,20 @@ export class CaseObject {
     innhold: string,
     kategori: string,
     viktighet: number) {
-
     this.overskrift = overskrift;
     this.bilde = bilde;
     this.bildetekst = bildetekst;
     this.innhold = innhold;
     this.kategori = kategori;
     this.viktighet = viktighet;
+  }
+
+  setId(id: number){
+    this.id = id;
+  }
+
+  getId(){
+    return this.id;
   }
 }
 

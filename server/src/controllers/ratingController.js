@@ -10,7 +10,6 @@ module.exports = function(app, ratingDao) {
 
     ratingDao.getLikesFromCase(req.params.id, (status: number, data: Object) => {
       res.status(status);
-      console.log('likesServer: ', data[0].likes);
       res.json({ data: data });
     });
   });
@@ -21,12 +20,9 @@ module.exports = function(app, ratingDao) {
 
     ratingDao.getDislikesFromCase(req.params.id, (status: number, data: Object) => {
       res.status(status);
-      console.log('dislikesServer: ', data[0].dislikes);
       res.json({ data: data });
     });
   });
-
-  
 
 
   // ---Post---

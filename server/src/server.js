@@ -29,7 +29,7 @@ const pool = mysql.createPool({
 });
 
 let app = express();
-let urlencodedParser = bodyParser.urlencoded({ extended: false });
+export let urlencodedParser = bodyParser.urlencoded({ extended: false });
 let caseDao = new CaseDao(pool);
 let commentDao = new CommentDao(pool);
 let ratingDao = new RatingDao(pool);
@@ -37,13 +37,10 @@ app.use(express.static(public_path));
 app.use(express.json()); // For parsing application/json
 
 
-
 // Fire controllers
 commentController(app, commentDao);
 ratingController(app, ratingDao);
 caseController(app, caseDao);
-
-
 
 
 // Hot reload application when not in production environment

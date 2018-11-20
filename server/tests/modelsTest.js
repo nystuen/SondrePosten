@@ -209,7 +209,6 @@ test('Testing if you get the correct number of dislikes, getDislikesFromCase', d
   done();
 });
 
-
 test('Testing if liking one case works', done => {
   function callback(status, data) {
     console.log(

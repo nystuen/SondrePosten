@@ -3,7 +3,7 @@
 import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
 import * as React from 'react';
-import '../editCase/newCase.css';
+import './newCase.css';
 import { TextHeader } from '../../textHeader/textHeader';
 import { caseService } from '../../../services';
 import { history } from '../../../index';
@@ -91,7 +91,7 @@ export class NewCase extends Component {
             <span className="input-group-text" id="basic-addon1">Innhold</span>
           </div>
           <textarea type="text" className="form-control" placeholder="" aria-label="innhold"
-                    aria-describedby="basic-addon1" id="innholdInput" name="innholdInput"/>
+                    aria-describedby="basic-addon1" id="innholdInput" name="innholdInput"  rows="3"/>
         </div>
 
         <div className="row">

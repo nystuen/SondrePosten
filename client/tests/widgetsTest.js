@@ -13,8 +13,34 @@ import { CardPreview } from '../src/components/card/cardPreview';
 import Card from '../src/components/card/card';
 import { CaseFeed } from '../src/components/caseFeed/caseFeed';
 import { caseService } from '../src/services';
+import {CaseObject} from '../src/components/types/types';
+
 chai.use(sinonChai);
 
+describe('Testing card', () => {
+  let wrapper, aCase;
+
+  beforeEach(() => {
+
+    let aCase = new CaseObject("overskrift", "bildeadresse", "bildetekst", "innhold", "sport", 1);
+
+    /*aCase = {
+      'kategori': 'annet',
+      'viktighet': 1,
+      'overskrift': 'Karpe til Festningen-festival',
+      'bildetekst': 'Rakk du ikke kjøpe billett til Karpe på Samfundet? Nå får du mulighet til å oppleve dem på Festningen.',
+      'bilde': 'https://trd.by/incoming/article17867290.ece/v8nlrb/ALTERNATES/w980-default/406cebca-5412-4a9a-8164-099bd9069b8f',
+      'innhold': 'Karpe solgte ut konsertene på Studentersamfundet, som finner sted i mars, på halvannet minutt.\n\nNå avslører Festningen-festivalen at rap-duoen også kommer til dem i slutten av august. Festivalen på Kristiansten Festning arrangeres for andre gang i 2019.\n\n- Perfekt booking til målgruppa\nMarked- og kommunikasjonsansvarlig i Festningen, Rachel Nordtømme, er fornøyd med å presentere den populære rap-duoen til de som var for seint ute sist.\n\n- Vi er vanvittig glade for å få Karpe til Festningen. Det blir helt fantastisk å oppleve dem på festivalen. Det er en perfekt booking til vår målgruppe. Jeg tror det blir rift om billettene.\n\nFor en drøy uke siden var pågangen etter å få tak i billetter til Karpe på Samfundet så stor at nettsiden kollapset. Den norske duoen er første artist som slippes til neste års Festningen-festival.\n\n- Nå gir vi veldig mange muligheten til å se Karpe i Trondheim, både de som sikret seg billett til Samfundet, og ikke minst de som ikke fikk tak i. Det blir en magisk opplevelse med Karpe på det som blir den feteste festivalen i Trondheim sommeren 2019, mener Nordtømme.',
+    };*/
+
+    wrapper = shallow(<CardPreview case={aCase}/>);
+  });
+
+  it('Testing if the cardpreview contains overskrift', () => {
+    expect(wrapper.find("card-title").children.toEqual('Karpe til Festningen-festival');
+  });
+
+});
 
 describe('Test for Button component', () => {
   let wrapper, buttonType, buttonSpy, children;
@@ -27,13 +53,16 @@ describe('Test for Button component', () => {
   });
 
   it('Testing clicking button', () => {
-    wrapper.find("#button").simulate('click');
+    wrapper.find('#button').simulate('click');
     expect(buttonSpy.called);
   });
+
+
 });
 
+
 describe('Alert tests', () => {
-  const wrapper = shallow(<Alert />);
+  const wrapper = shallow(<Alert/>);
 
   it('initially', () => {
     let instance: ?Alert = Alert.instance();

@@ -26,7 +26,6 @@ import createHashHistory from 'history/createHashHistory';
 
 export const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 
-
 const root = document.getElementById('root');
 if (root)
     ReactDOM.render(

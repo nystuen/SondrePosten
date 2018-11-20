@@ -1,3 +1,5 @@
+import { urlencodedParser } from '../server';
+
 module.exports = function(app, caseDao) {
 
   // ---Get---
@@ -39,7 +41,6 @@ module.exports = function(app, caseDao) {
     if (!(req.body instanceof Object)) return res.sendStatus(400);
 
     caseDao.getAllFromOneKat(req.params.cat, (status: number, data: Object) => {
-      console.log('størrelse: ', data.length);
       res.status(status);
       res.json({ data: data, title: req.params.cat, lengde: data.length });
     });
@@ -88,7 +89,6 @@ module.exports = function(app, caseDao) {
     };
 
     caseDao.regNewCase((json: Object), (status: number, data: Object) => {
-      console.log('nice!!');
       res.status(status);
     });
   });
@@ -98,28 +98,10 @@ module.exports = function(app, caseDao) {
 
   // Update case
 
-  app.put('/api/editCase/:id', (req: Request, res: Response) => {
+  app.put('/api/editCase/:id', urlencodedParser, (req: Request, res: Response) => {
     if (!(req.body instanceof Object)) return res.sendStatus(400);
 
-    let json = {
-      // $FlowFixMe
-      'overskrift': req.body.overskrift,
-      // $FlowFixMe
-      'innhold': req.body.innhold,
-      // $FlowFixMe
-      'bildetekst': req.body.bildetekst,
-      // $FlowFixMe
-      'bilde': req.body.bilde,
-      // $FlowFixMe
-      'kategori': req.body.kategori,
-      // $FlowFixMe
-      'viktighet': req.body.viktighet,
-      // $FlowFixMe
-      'id': req.paramd.id
-    };
-
-    caseDao.editCase((json: Object), (status: number, data: Object) => {
-      console.log('sak ' + req.params.id + ' er endret.');
+    caseDao.editCase(req.body, req.params.id, (status: number, data: Object) => {
       res.status(status);
     });
   });
@@ -129,7 +111,6 @@ module.exports = function(app, caseDao) {
     if (!(req.body instanceof Object)) return res.sendStatus(400);
 
     caseDao.setCaseAsInactive(req.params.id, (status: number, data: Object) => {
-      console.log('sak ' + req.params.id + ' slettet.');
       res.status(status);
     });
   });

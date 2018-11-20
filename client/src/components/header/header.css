@@ -36,9 +36,8 @@
 }
 
 .liveFeed a {
-    color:black;
+    color: black;
 }
-
 
 .header {
     padding-right: 5em;
@@ -57,11 +56,10 @@
 #regLink {
     right: 0;
 }
-.collapse{
 
+.collapse {
 
 }
-
 
 @media only screen and (max-width: 991px) {
 
@@ -69,6 +67,5 @@
         display: inline;
         max-width: 30px;
     }
-
 
 }

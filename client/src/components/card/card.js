@@ -14,12 +14,12 @@ export class Card extends Component<{
 }> {
 
   id = this.props.case.id;
-  likes: number = -1;
-  dislikes: number = -1;
+  likes: number = 0;
+  dislikes: number = 0;
 
   componentDidMount() {
     caseService
-       // $FlowFixMe
+    // $FlowFixMe
       .getLikes(this.id)
       // $FlowFixMe
       .then(likes => (this.likes = likes.data[0].likes));
@@ -85,7 +85,15 @@ export class Card extends Component<{
             <h5 className="card-text">{this.props.case.bildetekst}</h5>
             <hr/>
             <p className="card-text">{this.props.case.innhold}</p>
+            <a href='/#/' data-toggle="collapse" data-target="#admin"
+               aria-expanded="false" aria-controls="admin">
+              <i className="admin fas fa-cog fa-2x"></i></a>
+
+
+
           </div>
+
+
         </div>
       </div>
     );
