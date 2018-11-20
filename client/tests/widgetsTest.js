@@ -50,7 +50,7 @@ describe('Testing card', () => {
   });
 
   it('Testing if CardPreview\'s case prop is equal to the case passed in.', () => {
-    expect(wrapper.prop('case')).toEqual(aCase);
+    expect(wrapper.prop('case')).toEqual();
 
   });
 
