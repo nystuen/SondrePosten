@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Alert } from '../src/widgets.js';
+import { Alert } from '../src/components/alerts/alerts.js';
 import { shallow, mount } from 'enzyme';
 import { spy } from 'sinon';
 import { CaseObject } from '../src/components/types/types';
@@ -36,7 +36,7 @@ describe('Testing cardPreview', () => {
 
 describe('Test for Button component', () => {
   let wrapper, buttonType, buttonSpy, children;
-  // type = danger,, onClick = functin, children
+
   beforeEach(() => {
     buttonType = 'danger';
     buttonSpy = spy();
@@ -52,8 +52,6 @@ describe('Test for Button component', () => {
   it('Testing that button get correct classname', () => {
     expect(wrapper.find('button').prop('className')).toEqual('btn btn-danger');
   });
-
-
 });
 
 describe('Alert tests', () => {

@@ -6,7 +6,6 @@ import { CaseObject, Category, CommentObject, RatingObject } from './components/
 axios.interceptors.response.use(response => response.data);
 
 class CaseService {
-
   getHeadersAndPicturesFromImportantCases(): Promise<CaseObject[]> {
     return axios.get('/api/importantCases');
   }
@@ -27,11 +26,11 @@ class CaseService {
     return axios.get('/api/comments/' + id);
   }
 
-  getLikes(id: number): Promise<number[]>{
+  getLikes(id: number): Promise<number[]> {
     return axios.get('/api/likes/' + id);
-}
+  }
 
-  getDislikes(id: number): Promise<number[]>{
+  getDislikes(id: number): Promise<number[]> {
     return axios.get('/api/dislikes/' + id);
   }
 
@@ -59,12 +58,9 @@ class CaseService {
     return axios.put('/api/deleteCase/' + id);
   }
 
-  getCategories(): Promise<Category[]>{
+  getCategories(): Promise<Category[]> {
     return axios.get('/api/getCategories');
   }
 }
 
-
 export let caseService = new CaseService();
-
-

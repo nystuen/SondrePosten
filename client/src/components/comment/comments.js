@@ -7,7 +7,7 @@ import Button from '../button/button';
 import css from './comment.css';
 import { caseService } from '../../services';
 import { history } from '../../index';
-import { Alert } from '../../widgets';
+import { Alert } from '../alerts/alerts';
 import { CommentObject } from '../types/types';
 
 export class Comments extends Component<{ id: number }> {

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import * as React from 'react';
 import css from './header.css';
 import { caseService } from '../../services';
-import { Alert } from '../../widgets';
+import { Alert } from '../alerts/alerts';
 import Card from '../card/card';
 import { CaseObject } from '../types/types';
 //import {CaseType} from '../types/caseType';
@@ -13,8 +13,6 @@ import Marquee from 'react-smooth-marquee';
 
 export class LiveFeed extends Component {
   cases: CaseObject[] = [];
-;
-
   componentDidMount() {
     this.getCases();
 
@@ -37,7 +35,11 @@ export class LiveFeed extends Component {
           <div className="marqueeContent">
             {this.cases.map(thisCase => (
               // $FlowFixMe
-              <NavLink exact to={"/sak/" + thisCase.id}><span key={thisCase.id}>{thisCase.overskrift} ({thisCase.tidspunkt})</span></NavLink>
+              <NavLink key={thisCase.id} exact to={'/sak/' + thisCase.id}>
+                <span>
+                  {thisCase.overskrift} ({thisCase.tidspunkt})
+                </span>
+              </NavLink>
             ))}
           </div>
         </marquee>

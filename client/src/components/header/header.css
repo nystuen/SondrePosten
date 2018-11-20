@@ -69,3 +69,11 @@
     }
 
 }
+
+#hamburgerIcon{
+    color: #fffdfe;
+}
+
+#hamburgerIcon:hover {
+    color: #0e2327;
+}

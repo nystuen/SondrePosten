@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import Card from '../card/card';
-import { Alert } from '../../widgets';
+import { Alert } from '../alerts/alerts';
 import { caseService } from '../../services';
 import { Comments } from '../comment/comments';
 import { Button } from '../button/button';
@@ -29,19 +29,28 @@ export class Case extends Component<{ match: { params: { id: number } } }> {
       <div className="container-large feed">
         <div className="case">
           {this.cases.map(s => (
-            <Card key={s.id} case={s}/>
+            <Card key={s.id} case={s} />
           ))}
         </div>
 
         {/* Collapsable admin panel, opens by cog-wheel in card.js */}
         <div className="collapse" id="admin">
-          <Button id="deleteCase" type="danger" onClick={() => {
-            this.slettSak(this.props.match.params.id);
-          }} href={''}>Slett denne saken</Button>
-          <NavLink className="btn btn-danger" to={'/endre/' + this.props.match.params.id}>Endre sak</NavLink>
+          <Button
+            id="deleteCase"
+            type="danger"
+            onClick={() => {
+              this.slettSak(this.props.match.params.id);
+            }}
+            href={''}
+          >
+            Slett denne saken
+          </Button>
+          <NavLink className="btn btn-danger" to={'/endre/' + this.props.match.params.id}>
+            Endre sak
+          </NavLink>
         </div>
 
-        <Comments id={this.props.match.params.id}/>
+        <Comments id={this.props.match.params.id} />
       </div>
     );
   }
@@ -57,6 +66,4 @@ export class Case extends Component<{ match: { params: { id: number } } }> {
       Alert.danger('Sak ble ikke slettet allikevel.');
     }
   };
-
-
 }

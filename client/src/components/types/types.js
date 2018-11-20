@@ -1,12 +1,11 @@
 //@flow
 
-
 export class CaseObject {
   id: ?number;
   overskrift: string;
   bilde: string;
   bildetekst: string;
-  tidspunkt: ? string;
+  tidspunkt: ?string;
   innhold: string;
   kategori: string;
   viktighet: number;
@@ -17,7 +16,8 @@ export class CaseObject {
     bildetekst: string,
     innhold: string,
     kategori: string,
-    viktighet: number) {
+    viktighet: number
+  ) {
     this.overskrift = overskrift;
     this.bilde = bilde;
     this.bildetekst = bildetekst;
@@ -26,17 +26,17 @@ export class CaseObject {
     this.viktighet = viktighet;
   }
 
-  setId(id: number){
+  setId(id: number) {
     this.id = id;
   }
 
-  getId(){
+  getId() {
     return this.id;
   }
 }
 
 export class CommentObject {
-  id: ? string;
+  id: ?string;
   sak_id: string;
   brukernavn: string;
   kommentar: string;

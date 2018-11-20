@@ -10,8 +10,6 @@ import { Component } from 'react-simplified';
 export class Alert extends Component {
   alerts: { text: React.Node, type: string }[] = [];
 
-
-
   render() {
     return (
       <>
@@ -26,8 +24,6 @@ export class Alert extends Component {
             >
               &times;
             </button>
-
-
           </div>
         ))}
       </>

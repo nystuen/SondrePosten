@@ -5,9 +5,9 @@ import { Component } from 'react-simplified';
 import Card from '../../card/card';
 import { TextHeader } from '../../textHeader/textHeader';
 import { caseService } from '../../../services';
-import { Alert } from '../../../widgets';
+import { Alert } from '../../alerts/alerts';
 import { CardPreview } from '../../card/cardPreview';
-import {CaseFeed} from '../../caseFeed/caseFeed';
+import { CaseFeed } from '../../caseFeed/caseFeed';
 import { CaseObject } from '../../types/types';
 
 export class ImportantCases extends Component {
@@ -24,7 +24,7 @@ export class ImportantCases extends Component {
   render() {
     return (
       <div>
-        <CaseFeed title="Viktige saker" cases={this.cases}/>
+        <CaseFeed title="Viktige saker" cases={this.cases} />
       </div>
     );
   }
