@@ -42,10 +42,11 @@ export class Case extends Component<{ match: { params: { id: number } } }> {
               this.slettSak(this.props.match.params.id);
             }}
             href={''}
+            alt="Slett sak"
           >
             Slett denne saken
           </Button>
-          <NavLink className="btn btn-danger" to={'/endre/' + this.props.match.params.id}>
+          <NavLink className="btn btn-danger" to={'/endre/' + this.props.match.params.id} alt="Endre sak">
             Endre sak
           </NavLink>
         </div>
