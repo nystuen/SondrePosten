@@ -71,11 +71,7 @@ module.exports = class CaseDao extends Dao {
   }
 
   setCaseAsInactive(id: string, callback: Function) {
-    super.query(
-      'UPDATE sak SET aktiv = 0 WHERE id=?',
-      [id],
-      callback
-    );
+    super.query('UPDATE sak SET aktiv = 0 WHERE id=?', [id], callback);
   }
 
   editCase(json: Object, id: number, callback: Function) {

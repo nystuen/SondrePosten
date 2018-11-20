@@ -1,13 +1,11 @@
-.detailBox {
-    margin-top: 1em;
+ .detailBox {
+  margin-top: 1em;
 }
 
-.singleComment:nth-child(odd){
-    background-color: #fafafa;
+.singleComment:nth-child(odd) {
+  background-color: #fafafa;
 }
 
 .comments {
-    margin-top: 1em;
+  margin-top: 1em;
 }
-
-

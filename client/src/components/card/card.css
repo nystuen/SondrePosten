@@ -1,16 +1,12 @@
 .caseView {
-    padding-right: 10em;
-    padding-left: 10em;
+  padding-right: 10em;
+  padding-left: 10em;
 }
 
-
-.fa-2x  {
-    color: #1d5c60;
-
+.fa-2x {
+  color: #1d5c60;
 }
 
 .fa-2x:hover {
-    color: #0e2327;
+  color: #0e2327;
 }
-
-

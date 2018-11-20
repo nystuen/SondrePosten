@@ -100,7 +100,7 @@ export class Card extends Component<{
               aria-expanded="false"
               aria-controls="admin"
             >
-              <i className="admin fas fa-cog fa-2x" />
+              <i className="admin fas fa-cog. fa-2x" />
             </a>
           </div>
         </div>

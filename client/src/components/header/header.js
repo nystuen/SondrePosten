@@ -35,7 +35,7 @@ export class NavBar extends Component {
           />
 
           <div className="navbar-collapse collapse.show " id="myNavbar" data-target="#myNavbar">
-            <ul className="navbar-nav" data-target="#myNavbar">
+            <ul className="navbar-nav">
               {this.categories.map(s => (
                 <li key={s.kategori + 'Item'}>
                   <NavLink

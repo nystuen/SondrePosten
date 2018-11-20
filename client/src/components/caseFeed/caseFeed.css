@@ -1,13 +1,10 @@
-.amountOfCases{
-
+.amountOfCases {
 }
 
-
 .amountOfCases p {
-    justify-self: start;
+  justify-self: start;
 }
 
 .caseFeed {
-    margin-bottom: 3em;
+  margin-bottom: 3em;
 }
-

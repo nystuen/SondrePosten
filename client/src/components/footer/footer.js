@@ -6,7 +6,8 @@ import './footer.css';
 
 export class Footer extends Component<> {
   render() {
-    return <footer className="page-footer font-small special-color-dark pt-4 contact">
+    return (
+      <footer className="page-footer font-small special-color-dark pt-4 contact">
         <div className="container cotact">
           <ul className="list-unstyled list-inline text-center">
             <li className="list-inline-item">
@@ -38,7 +39,7 @@ export class Footer extends Component<> {
         </div>
 
         <div className="copyright text-center py-3">© 2018 Copyright: Ådne Nystuen</div>
-      </footer>;
+      </footer>
+    );
   }
 }
-

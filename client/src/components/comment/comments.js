@@ -36,7 +36,6 @@ export class Comments extends Component<{ id: number }> {
     let tempComments = this.comments;
     tempComments.push(newComment);
     this.comments = tempComments;
-
     // add commentObject to db
     caseService.addComment(newComment).catch((error: Error) => Alert.danger(error.message));
   };
@@ -49,8 +48,7 @@ export class Comments extends Component<{ id: number }> {
           data-toggle="collapse"
           data-target="#collapseExample2"
           aria-expanded="false"
-          aria-controls="collapseExample2"
-        >
+          aria-controls="collapseExample2">
           Legg til en kommentar
         </button>
 
