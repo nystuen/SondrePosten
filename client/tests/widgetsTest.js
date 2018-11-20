@@ -37,15 +37,16 @@ describe('Testing card', () => {
   });
 
   it('Testing if the cardpreview contains overskrift', () => {
-    expect((wrapper.find("card-title").text())).toEqual('Karpe til Festningen-festival');
+    expect(wrapper.find("card-title").text()).toEqual('Karpe til Festningen-festival');
+
   });
 
   it('Testing if the cardpreview contains an image', () => {
-    expect((wrapper.find("card-img-top").text())).toEqual('bildeadresse.jpg');
+    expect(wrapper.find("card-img-top").text()).toEqual('bildeadresse.jpg');
   });
 
   it('Testing if the cardpreview', () => {
-    expect((wrapper.find("card-img-top").text())).toEqual('bildeadresse.jpg');
+    expect(wrapper.find("card-img-top").text()).toEqual('bildeadresse.jpg');
   });
 
 });
