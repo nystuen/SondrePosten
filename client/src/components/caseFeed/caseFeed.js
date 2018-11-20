@@ -19,12 +19,12 @@ export class CaseFeed extends Component<{ title: string, cases: CaseObject[] }> 
         <TextHeader text={this.props.title} />
         <div className="grid container-large">
           {this.props.cases.slice(0, this.amountOfCases).map(thisCase => (
-            <CardPreview key={thisCase.id} case={thisCase} />
+            <CardPreview alt="En sak" key={thisCase.id} case={thisCase} />
           ))}
         </div>
 
         <div className="container-large amountOfCases">
-          <p>
+          <p alt="Antall saker som vises">
             Viser {this.props.cases.slice(0, this.amountOfCases).length} av {this.props.cases.length}
           </p>
 
@@ -36,6 +36,7 @@ export class CaseFeed extends Component<{ title: string, cases: CaseObject[] }> 
                 this.loadMore();
               }}
               href={''}
+              alt="Last inn flere saker"
             >
               Last inn flere saker
             </Button>

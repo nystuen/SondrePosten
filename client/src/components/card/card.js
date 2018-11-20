@@ -58,11 +58,11 @@ export class Card extends Component<{
     return (
       <div>
         <div className="card" styles="width: 18rem;">
-          <img className="card-img-top" src={this.props.case.bilde} alt="Card image cap" />
+          <img className="card-img-top" src={this.props.case.bilde} alt="Sakens bilde" />
           <div className="card-body">
             <div className="d-flex mb-3">
               <div className="mr-auto p-2 ">
-                <p>Lansert: {this.props.case.tidspunkt}</p>
+                <p alt="Tidspunkt">Lansert: {this.props.case.tidspunkt}</p>
               </div>
               <div className="p-2">
                 <Button
@@ -71,6 +71,7 @@ export class Card extends Component<{
                   onClick={() => {
                     this.handleLike();
                   }}
+                  alt="Like case"
                 >
                   {this.likes} <i className="fas fa-thumbs-up" />
                 </Button>
@@ -82,16 +83,17 @@ export class Card extends Component<{
                   onClick={() => {
                     this.handleDislike();
                   }}
+                  alt="Dislike case"
                 >
                   {this.dislikes} <i className="fas fa-thumbs-down" />
                 </Button>
               </div>
             </div>
 
-            <h4 className="card-title">{this.props.case.overskrift}</h4>
-            <h5 className="card-text">{this.props.case.bildetekst}</h5>
+            <h4 className="card-title" alt="Sakens overksrift">{this.props.case.overskrift}</h4>
+            <h5 className="card-text" alt="Sakens bildetekst">{this.props.case.bildetekst}</h5>
             <hr />
-            <p className="card-text">{this.props.case.innhold}</p>
+            <p className="card-text" alt="Sakens innhold">{this.props.case.innhold}</p>
             <a
               className="d-flex justify-content-end"
               href="/#/"

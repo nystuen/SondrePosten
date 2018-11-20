@@ -20,6 +20,8 @@ export class Button extends Component<{ type: string, href?: string, onClick: ()
             this.props.onClick();
           }}
           className={this.className}
+
+          alt="En gjenbrukbar knapp"
         >
           {this.props.children}
         </button>

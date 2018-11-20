@@ -21,12 +21,12 @@ export class CategoriesList extends Component<{ currentCat?: string }> {
   render() {
     return (
       <div>
-        <select className="form-control" id="kat">
+        <select alt="Kategoriliste" className="form-control" id="kat">
           {this.categories.map(s =>
             this.props.currentCat == s.kategori ? (
-              <option selected="selected"> {s.kategori} </option>
+              <option alt="Kategorivalg" selected="selected"> {s.kategori} </option>
             ) : (
-              <option> {s.kategori}</option>
+              <option alt="Kategorivalg"> {s.kategori}</option>
             )
           )}
         </select>
