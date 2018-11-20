@@ -22,7 +22,7 @@ describe('Testing card', () => {
 
   beforeEach(() => {
 
-    let aCase = new CaseObject("overskrift", "bildeadresse", "bildetekst", "innhold", "sport", 1);
+    let aCase = new CaseObject("overskrift", "bildeadresse.jpg", "bildetekst", "innhold", "sport", 1);
 
     /*aCase = {
       'kategori': 'annet',
@@ -37,7 +37,11 @@ describe('Testing card', () => {
   });
 
   it('Testing if the cardpreview contains overskrift', () => {
-    expect(wrapper.find("card-title").children.toEqual('Karpe til Festningen-festival'));
+    expect((wrapper.find("card-title").children).toEqual('Karpe til Festningen-festival'));
+  });
+
+  it('Testing if the cardpreview contains an image', () => {
+    expect(wrapper.find("card-img-top").children.toEqual('bildeadresse.jpg'));
   });
 
 });
