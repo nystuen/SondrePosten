@@ -26,20 +26,12 @@ export class EditCase extends Component<{ match: { params: { id: number } } }> {
   viktighetValue = -1;
 
   validateForm = () => {
-
-    console.log(this.innholdValue + this.viktighetValue);
-
-    if (this.overskriftValue !== '' &&
+    return this.overskriftValue !== '' &&
       this.bildeValue !== '' &&
       this.bildetekstValue !== '' &&
       this.innholdValue !== '' &&
-      this.viktighetValue !== -1) {
-      return true;
-    } else {
-      return false;
-    }
+      this.viktighetValue !== -1;
   };
-
 
   componentDidMount() {
     caseService
@@ -48,7 +40,7 @@ export class EditCase extends Component<{ match: { params: { id: number } } }> {
         // $FlowFixMe
         (this.cases = cases.data);
         this.overskriftValue = this.cases[0].overskrift;
-        this.bildeValue =this.cases[0].bilde;
+        this.bildeValue = this.cases[0].bilde;
         this.bildetekstValue = this.cases[0].bildetekst;
         this.innholdValue = this.cases[0].innhold;
         this.viktighetValue = this.cases[0].viktighet;

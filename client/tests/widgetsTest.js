@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { Alert } from '../src/widgets.js';
 import { shallow, mount } from 'enzyme';
-import chai, { expect } from 'chai';
+//import chai, { expect } from 'chai';
 import { spy } from 'sinon';
 import sinonChai from 'sinon-chai';
 import { Button } from '../src/components/button/button';
@@ -15,7 +15,7 @@ import { CaseFeed } from '../src/components/caseFeed/caseFeed';
 import { caseService } from '../src/services';
 import { CaseObject } from '../src/components/types/types';
 
-chai.use(sinonChai);
+//chai.use(sinonChai);
 
 describe('Testing card', () => {
   let wrapper, aCase;
@@ -37,20 +37,20 @@ describe('Testing card', () => {
   });
 
   it('Testing if the cardpreview contains overskrift', () => {
-    expect(wrapper.find('card-title').text()).to.equal('Karpe til Festningen-festival');
+    expect(wrapper.find('card-title').text()).toEqual('Karpe til Festningen-festival');
 
   });
 
   it('Testing if the cardpreview contains an image', () => {
-    expect(wrapper.find('card-img-top').text()).to.equal('bildeadresse.jpg');
+    expect(wrapper.find('card-img-top').text()).toEqual('bildeadresse.jpg');
   });
 
   it('Testing if the cardpreview', () => {
-    expect(wrapper.find('card-img-top').text()).to.equal('bildeadresse.jpg');
+    expect(wrapper.find('card-img-top').text()).toEqual('bildeadresse.jpg');
   });
 
   it('Testing if CardPreview\'s case prop is equal to the case passed in.', () => {
-    expect(wrapper.prop('case')).to.equal();
+    expect(wrapper.prop('case')).toEqual();
 
   });
 
@@ -80,7 +80,7 @@ describe('Alert tests', () => {
 
   it('initially', () => {
     let instance: ?Alert = Alert.instance();
-    expect(typeof instance).to.equal('object');
+    expect(typeof instance).toEqual('object');
     if (instance) expect(instance.alerts).toEqual([]);
 
     expect(wrapper.find('button.close')).toHaveLength(0);
@@ -91,7 +91,7 @@ describe('Alert tests', () => {
 
     setTimeout(() => {
       let instance: ?Alert = Alert.instance();
-      expect(typeof instance).to.equal('object');
+      expect(typeof instance).toEqual('object');
       if (instance) expect(instance.alerts).toEqual([{ text: 'test', type: 'danger' }]);
 
       expect(wrapper.find('button.close')).toHaveLength(1);
@@ -104,7 +104,7 @@ describe('Alert tests', () => {
     wrapper.find('button.close').simulate('click');
 
     let instance: ?Alert = Alert.instance();
-    expect(typeof instance).to.equal('object');
+    expect(typeof instance).toEqual('object');
     if (instance) expect(instance.alerts).toEqual([]);
 
     expect(wrapper.find('button.close')).toHaveLength(0);

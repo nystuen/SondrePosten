@@ -24,21 +24,18 @@ export class NewCase extends Component {
   viktighetValue = -1;
 
   validateForm = () => {
-
-    console.log(this.innholdValue + this.viktighetValue );
-
-    if(this.overskriftValue !== '' &&
+    return this.overskriftValue !== '' &&
       this.bildeValue !== '' &&
       this.bildetekstValue !== '' &&
       this.innholdValue !== '' &&
-      this.viktighetValue !== -1){ return true } else { return false }
+      this.viktighetValue !== -1;
   };
 
   handleSubmit = () => {
 
     console.log('validate: ', this.validateForm());
 
-    if(this.validateForm()) {
+    if (this.validateForm()) {
       // $FlowFixMe
       let katValue = document.getElementById('kat').value;
       let newCase = new CaseObject(this.overskriftValue, this.bildeValue, this.bildetekstValue, this.innholdValue, katValue, this.viktighetValue);
@@ -54,7 +51,7 @@ export class NewCase extends Component {
 
       history.push('/kat/' + newCase.kategori);
     } else {
-      Alert.danger("Du har ikke skrevet inn din sak i riktig format.")
+      Alert.danger('Du har ikke skrevet inn din sak i riktig format.');
     }
 
   };
@@ -63,6 +60,7 @@ export class NewCase extends Component {
     return (
       <div className="container-large regCase">
         <TextHeader text="Registrer en ny sak"/>
+
         <div className="input-group input-group-mb mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">Overskrift</span>
@@ -71,7 +69,6 @@ export class NewCase extends Component {
                  aria-describedby="basic-addon1" id="overskriftInput" name="overskriftInput"
                  onChange={evt => this.overskriftValue = evt.target.value}/>
         </div>
-
 
         <div className="input-group input-group-mb mb-3">
           <div className="input-group-prepend">
@@ -115,6 +112,7 @@ export class NewCase extends Component {
               <option value={2}>Ikke like viktig</option>
             </select>
           </div>
+
         </div>
 
         <Button onClick={() => {
