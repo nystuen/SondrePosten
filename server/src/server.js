@@ -17,7 +17,10 @@ const bodyParser = require('body-parser');
 type Request = express$Request;
 type Response = express$Response;
 
-const public_path = path.join(__dirname, '/../../client/public');
+const public_path = path.join(
+  __dirname,
+  '/../../client/public'
+);
 
 const pool = mysql.createPool({
   connectionLimit: 5,
@@ -29,19 +32,19 @@ const pool = mysql.createPool({
 });
 
 let app = express();
-export let urlencodedParser = bodyParser.urlencoded({ extended: false });
+export let urlencodedParser = bodyParser.urlencoded({
+  extended: false
+});
 let caseDao = new CaseDao(pool);
 let commentDao = new CommentDao(pool);
 let ratingDao = new RatingDao(pool);
 app.use(express.static(public_path));
 app.use(express.json()); // For parsing application/json
 
-
 // Fire controllers
 commentController(app, commentDao);
 ratingController(app, ratingDao);
 caseController(app, caseDao);
-
 
 // Hot reload application when not in production environment
 if (process.env.NODE_ENV !== 'production') {

@@ -6,7 +6,6 @@ import { Alert } from '../../widgets';
 import { caseService } from '../../services';
 import { Category } from '../types/types';
 
-
 export class CategoriesList extends Component<{ currentCat?: string }> {
   categories: Category[] = [];
 
@@ -22,18 +21,14 @@ export class CategoriesList extends Component<{ currentCat?: string }> {
   render() {
     return (
       <div>
-        <select className="form-control" id="kat" >
-        {this.categories.map(s => (
-
-            (this.props.currentCat == s.kategori) ? (
+        <select className="form-control" id="kat">
+          {this.categories.map(s =>
+            this.props.currentCat == s.kategori ? (
               <option selected="selected"> {s.kategori} </option>
             ) : (
               <option> {s.kategori}</option>
             )
-
-
-
-        ))}
+          )}
         </select>
       </div>
     );

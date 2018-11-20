@@ -3,7 +3,6 @@
 const Dao = require('./dao');
 
 module.exports = class CaseDao extends Dao {
-
   getAllHeadersAndPictures(callback: Function) {
     super.query(
       'select id, overskrift, bilde from sak',
@@ -36,7 +35,9 @@ module.exports = class CaseDao extends Dao {
     );
   }
 
-  getHeadersAndPicturesFromImportantCases(callback: Function) {
+  getHeadersAndPicturesFromImportantCases(
+    callback: Function
+  ) {
     super.query(
       'select viktighet, id, overskrift, bilde from sak WHERE aktiv = 1 AND viktighet=1 ORDER BY `sak`.`tidspunkt` DESC',
       [],
@@ -45,7 +46,15 @@ module.exports = class CaseDao extends Dao {
   }
 
   regNewCase(json: Object, callback: Function) {
-    let val = [json.overskrift, json.bildetekst, json.innhold, json.tidspunkt, json.bilde, json.kategori, json.viktighet];
+    let val = [
+      json.overskrift,
+      json.bildetekst,
+      json.innhold,
+      json.tidspunkt,
+      json.bilde,
+      json.kategori,
+      json.viktighet
+    ];
     super.query(
       'insert into sak (aktiv, overskrift, bildetekst, innhold, tidspunkt, bilde, kategori, viktighet) values (1, ?,?,?,?,?,?,?)',
       val,
@@ -70,7 +79,15 @@ module.exports = class CaseDao extends Dao {
   }
 
   editCase(json: Object, id: number, callback: Function) {
-    let val = [json.overskrift, json.bildetekst, json.innhold, json.bilde, json.kategori, json.viktighet, id];
+    let val = [
+      json.overskrift,
+      json.bildetekst,
+      json.innhold,
+      json.bilde,
+      json.kategori,
+      json.viktighet,
+      id
+    ];
     super.query(
       'UPDATE sak SET overskrift=?, bildetekst=?, innhold=?, bilde=?, kategori=?, viktighet= ? WHERE id=?;',
       val,
@@ -83,7 +100,7 @@ module.exports = class CaseDao extends Dao {
     super.query(
       'DELETE FROM sak WHERE overskrift LIKE ? AND tidspunkt LIKE ?',
       val,
-      callback);
+      callback
+    );
   }
-
 };

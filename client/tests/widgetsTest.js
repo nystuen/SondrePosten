@@ -7,15 +7,6 @@ import { spy } from 'sinon';
 import { CaseObject } from '../src/components/types/types';
 import { Button } from '../src/components/button/button';
 import { CardPreview } from '../src/components/card/cardPreview';
-import { Component } from 'react-simplified';
-import sinonChai from 'sinon-chai';
-import { NewCase } from '../src/components/pages/newCase/newCase';
-import Card from '../src/components/card/card';
-import { CaseFeed } from '../src/components/caseFeed/caseFeed';
-import { caseService } from '../src/services';
-//import chai, { expect } from 'chai';
-
-//chai.use(sinonChai);
 
 describe('Testing cardPreview', () => {
   let wrapper, aCase;
@@ -23,12 +14,11 @@ describe('Testing cardPreview', () => {
   beforeEach(() => {
     aCase = new CaseObject('overskrift', 'bildeadresse.jpg', 'bildetekst', 'innhold', 'sport', 1);
     aCase.setId(1);
-    wrapper = shallow(<CardPreview case={aCase}/>);
+    wrapper = shallow(<CardPreview case={aCase} />);
   });
 
   it('Testing if the cardpreview contains overskrift', () => {
     expect(wrapper.find('#overskrift').text()).toEqual('overskrift');
-
   });
 
   it('Testing if the cardpreview contains the correct image', () => {
@@ -36,34 +26,38 @@ describe('Testing cardPreview', () => {
   });
 
   it('Testing if clicking the navlink sends me to the correct case', () => {
-    expect(wrapper.find("#linkBtn").prop('to')).toEqual('/sak/1');
+    expect(wrapper.find('#linkBtn').prop('to')).toEqual('/sak/1');
   });
 
-  it('Testing if CardPreview\'s case prop is equal to the case passed in.', () => {
+  it("Testing if CardPreview's case prop is equal to the case passed in.", () => {
     expect(wrapper.instance().props.case).toEqual(aCase);
   });
-
 });
 
 describe('Test for Button component', () => {
   let wrapper, buttonType, buttonSpy, children;
-// type = danger,, onClick = functin, children
+  // type = danger,, onClick = functin, children
   beforeEach(() => {
     buttonType = 'danger';
     buttonSpy = spy();
     children = 'clickMe';
-    wrapper = shallow(<Button id="button" type={buttonType} onClick={() => buttonSpy}>children</Button>);
+    wrapper = shallow(<Button id="button" type={buttonType} onClick={() => buttonSpy} children={children} />);
   });
 
   it('Testing clicking button', () => {
     wrapper.find('#button').simulate('click');
     expect(buttonSpy.called);
   });
+
+  it('Testing that button get correct classname', () => {
+    expect(wrapper.find('button').prop('className')).toEqual('btn btn-danger');
+  });
+
+
 });
 
-
 describe('Alert tests', () => {
-  const wrapper = shallow(<Alert/>);
+  const wrapper = shallow(<Alert />);
 
   it('initially', () => {
     let instance: ?Alert = Alert.instance();

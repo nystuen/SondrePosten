@@ -2,9 +2,7 @@
 
 const Dao = require('./dao');
 
-
 module.exports = class RatingDao extends Dao {
-
   getLikesFromCase(id: string, callback: Function) {
     super.query(
       'SELECT COUNT(*) AS likes FROM sak_rating WHERE rating = 1 AND sak_id=?',

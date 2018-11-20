@@ -109,7 +109,7 @@ export class EditCase extends Component<{ match: { params: { id: number } } }> {
               </div>
               <input type="text" className="form-control" placeholder="" aria-label="Overskrift"
                      aria-describedby="basic-addon1" id="overskriftInput" name="overskriftInput"
-                     defaultValue={s.overskrift} onChange={evt => this.overskriftValue = evt.target.value}/>
+                     value={s.overskrift} defaultValue={s.overskrift} onChange={evt => this.overskriftValue = evt.target.value}/>
             </div>
 
             <div className="input-group input-group-mb mb-3">
