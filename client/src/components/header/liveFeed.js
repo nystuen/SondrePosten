@@ -1,4 +1,4 @@
-// @flow
+// @flow{setTimeout( this.alerts.splice(i, 1),5000)}{setTimeout( this.alerts.splice(i, 1),5000)}
 
 import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
@@ -19,7 +19,7 @@ export class LiveFeed extends Component {
     this.getCases();
 
     // oppdater livefeed hvert tiende sekund
-    setInterval(this.getCases, 60000);
+    setInterval(this.getCases, 10000);
   }
 
   getCases = () => {
@@ -36,6 +36,7 @@ export class LiveFeed extends Component {
         <marquee truespeed="true" scrolldelay="50">
           <div className="marqueeContent">
             {this.cases.map(thisCase => (
+              // $FlowFixMe
               <NavLink exact to={"/sak/" + thisCase.id}><span key={thisCase.id}>{thisCase.overskrift} ({thisCase.tidspunkt})</span></NavLink>
             ))}
           </div>

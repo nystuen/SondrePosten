@@ -11,6 +11,7 @@ import { CaseObject, Category } from '../../types/types';
 import { Alert } from '../../../widgets';
 import { Button } from '../../button/button';
 import { CategoriesList } from '../../categoriesList/categoriesList';
+import css from './editCase.css';
 import Card from '../../card/card';
 
 
@@ -18,60 +19,95 @@ export class EditCase extends Component<{ match: { params: { id: number } } }> {
 
   cases: CaseObject[] = [];
 
+  overskriftValue = '';
+  bildeValue = '';
+  bildetekstValue = '';
+  innholdValue = '';
+  viktighetValue = -1;
+
+  validateForm = () => {
+
+    console.log(this.innholdValue + this.viktighetValue);
+
+    if (this.overskriftValue !== '' &&
+      this.bildeValue !== '' &&
+      this.bildetekstValue !== '' &&
+      this.innholdValue !== '' &&
+      this.viktighetValue !== -1) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+
   componentDidMount() {
     caseService
       .getCase(this.props.match.params.id)
-      // $FlowFixMe
-      .then(cases => (this.cases = cases.data))
+      .then(cases => {
+        // $FlowFixMe
+        (this.cases = cases.data);
+        this.overskriftValue = this.cases[0].overskrift;
+        this.bildeValue =this.cases[0].bilde;
+        this.bildetekstValue = this.cases[0].bildetekst;
+        this.innholdValue = this.cases[0].innhold;
+        this.viktighetValue = this.cases[0].viktighet;
+      })
       .then(console.log('overskrift: ', this.cases))
       .catch((error: Error) => Alert.danger(error.message));
   }
 
   handleSubmit = () => {
-    // $FlowFixMe
-    let overskriftValue = document.getElementById('overskriftInput').value;
-    // $FlowFixMe
-    let bildeValue = document.getElementById('bildeInput').value;
-    // $FlowFixMe
-    let bildetekstValue = document.getElementById('bildetekstInput').value;
-    // $FlowFixMe
-    let innholdValue = document.getElementById('innholdInput').value;
-    // $FlowFixMe
-    let viktighetValue = document.getElementById('viktighet').value;
-    // $FlowFixMe
-    let katValue = document.getElementById('kat').value;
+    console.log('validate: ', this.validateForm());
+
+    if (this.validateForm()) {
+      /*  // $FlowFixMe
+        let overskriftValue = document.getElementById('overskriftInput').value;
+        // $FlowFixMe
+        let bildeValue = document.getElementById('bildeInput').value;
+        // $FlowFixMe
+        let bildetekstValue = document.getElementById('bildetekstInput').value;
+        // $FlowFixMe
+        let innholdValue = document.getElementById('innholdInput').value;
+        // $FlowFixMe
+        let viktighetValue = document.getElementById('viktighet').value;
+        // $FlowFixMe
+        */
+      let katValue = document.getElementById('kat').value;
 
 
-    /* let newCase =
-      'overskriftInput': overskriftValue,
-      'innholdInput': innholdValue,
-      'bildetekstInput': bildetekstValue,
-      'bildeInput': bildeValue,
-      'viktighetInput': viktighetValue,
-      'kategoriInput': katValue
-    };
-    */
+      /* let newCase =
+        'overskriftInput': overskriftValue,
+        'innholdInput': innholdValue,
+        'bildetekstInput': bildetekstValue,
+        'bildeInput': bildeValue,
+        'viktighetInput': viktighetValue,
+        'kategoriInput': katValue
+      };
+      */
 
-    let newCase = new CaseObject(
-      overskriftValue,
-      bildeValue,
-      bildetekstValue,
-      innholdValue,
-      katValue,
-      viktighetValue);
+      let newCase = new CaseObject(
+        this.overskriftValue,
+        this.bildeValue,
+        this.bildetekstValue,
+        this.innholdValue,
+        katValue,
+        this.viktighetValue);
 
-    console.log('DETTE ER EN ID', newCase.id);
+      console.log('DETTE ER EN ID', newCase.id);
 
-    caseService
-      .editCase(newCase, this.props.match.params.id)
-      .then(history.push('/sak/' + this.props.match.params.id))
-      .catch((error: Error) => Alert.danger(error.message));
-
+      caseService
+        .editCase(newCase, this.props.match.params.id)
+        .then(history.push('/sak/' + this.props.match.params.id))
+        .catch((error: Error) => Alert.danger(error.message));
+    } else {
+      Alert.danger('Du har ikke skrevet inn din sak i riktig format.');
+    }
   };
 
   render() {
     return (
-      <div className="case">
+      <div className="case editCase">
         {this.cases.map(s => (
           <div className="container-large">
             <TextHeader text="Endre sak"/>
@@ -81,7 +117,7 @@ export class EditCase extends Component<{ match: { params: { id: number } } }> {
               </div>
               <input type="text" className="form-control" placeholder="" aria-label="Overskrift"
                      aria-describedby="basic-addon1" id="overskriftInput" name="overskriftInput"
-                     defaultValue={s.overskrift}/>
+                     defaultValue={s.overskrift} onChange={evt => this.overskriftValue = evt.target.value}/>
             </div>
 
             <div className="input-group input-group-mb mb-3">
@@ -89,7 +125,8 @@ export class EditCase extends Component<{ match: { params: { id: number } } }> {
                 <span className="input-group-text" id="basic-addon1">Bildeadresse</span>
               </div>
               <input type="text" className="form-control" placeholder="" aria-label="bildeValue"
-                     aria-describedby="basic-addon1" id="bildeInput" name="bildeInput" defaultValue={s.bilde}/>
+                     aria-describedby="basic-addon1" id="bildeInput" name="bildeInput" defaultValue={s.bilde}
+                     onChange={evt => this.bildeValue = evt.target.value}/>
             </div>
 
             <div className="input-group input-group-mb mb-3">
@@ -98,7 +135,7 @@ export class EditCase extends Component<{ match: { params: { id: number } } }> {
               </div>
               <input type="text" className="form-control" placeholder="" aria-label="Bildetekst"
                      aria-describedby="basic-addon1" id="bildetekstInput" name="bildetekstInput"
-                     defaultValue={s.bildetekst}/>
+                     defaultValue={s.bildetekst} onChange={evt => this.bildetekstValue = evt.target.value}/>
             </div>
 
             <div className="input-group input-group-mb mb-3">
@@ -107,7 +144,8 @@ export class EditCase extends Component<{ match: { params: { id: number } } }> {
               </div>
               <textarea type="text" className="form-control" placeholder=""
                         aria-label="innhold" aria-describedby="basic-addon1" rows="3"
-                        id="innholdInput" name="innholdInput" defaultValue={s.innhold} />
+                        id="innholdInput" name="innholdInput" defaultValue={s.innhold}
+                        onChange={evt => this.innholdValue = evt.target.value}/>
             </div>
 
             <div className="row">
@@ -118,7 +156,8 @@ export class EditCase extends Component<{ match: { params: { id: number } } }> {
 
               <div className="form-group col-md-6">
                 <label htmlFor="sel2">Viktighet</label>
-                <select className="form-control" id="viktighet" name="viktighet" defaultValue={s.viktighet}>
+                <select className="form-control" id="viktighet" name="viktighet" defaultValue={s.viktighet}
+                        onChange={evt => this.viktighetValue = evt.target.value}>
                   <option name="viktig" value={1}>Viktig</option>
                   <option name="ikkeViktig" value={2}>Ikke like viktig</option>
                 </select>
