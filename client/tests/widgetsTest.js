@@ -37,7 +37,7 @@ describe('Testing card', () => {
   });
 
   it('Testing if the cardpreview contains overskrift', () => {
-    expect(wrapper.find("card-title").children.toEqual('Karpe til Festningen-festival');
+    expect(wrapper.find("card-title").children.toEqual('Karpe til Festningen-festival'));
   });
 
 });
