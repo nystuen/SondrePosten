@@ -35,3 +35,5 @@ module.exports = class RatingDao extends Dao {
     );
   }
 };
+
+// Skjerf

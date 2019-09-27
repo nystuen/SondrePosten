@@ -64,7 +64,6 @@ export class NewCase extends Component {
     return (
       <div className="container-large regCase">
         <TextHeader text="Registrer en ny sak" />
-
         <div className="input-group input-group-mb mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">

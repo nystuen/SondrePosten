@@ -18,7 +18,6 @@ module.exports = function(app, commentDao) {
   );
 
   // ---Post---
-
   app.post(
     '/api/addComment/:id',
     (req: Request, res: Response) => {

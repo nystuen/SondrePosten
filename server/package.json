@@ -27,6 +27,8 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
     "cross-env": "^5.2.0",
+    "flow-bin": "^0.108.0",
+    "getconfig": "^4.5.0",
     "jest": "^23.6.0",
     "nodemon": "^1.18.4"
   }

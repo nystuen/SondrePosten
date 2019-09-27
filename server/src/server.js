@@ -13,6 +13,7 @@ import ratingController from './controllers/ratingController';
 import caseController from './controllers/caseController';
 
 const bodyParser = require('body-parser');
+const config = require('getconfig');
 
 type Request = express$Request;
 type Response = express$Response;
@@ -26,7 +27,7 @@ const pool = mysql.createPool({
   connectionLimit: 5,
   host: 'mysql.stud.iie.ntnu.no',
   user: 'aadneny',
-  password: '4jzYVq7M',
+  password: config.db_password,
   database: 'aadneny',
   debug: false
 });
@@ -54,7 +55,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 // The listen promise can be used to wait for the web server to start (for instance in your tests)
 export let listen = new Promise<void>((resolve, reject) => {
-  app.listen(3000, error => {
+  app.listen(3000, error=> {
     if (error) reject(error.message);
     console.log('Server started');
     resolve();
