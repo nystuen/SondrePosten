@@ -2,16 +2,13 @@
 
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { Alert } from '../alerts/alerts';
-import { caseService } from '../../services';
-import { TextHeader } from '../textHeader/textHeader';
-import css from './caseFeed.css';
-import { CardPreview } from '../card/cardPreview';
-import { Button } from '../button/button';
-import { CaseObject } from '../types/types';
+import { TextHeader } from '../../components/textHeader/textHeader';
+import { CardPreview } from '../../components/card/cardPreview';
+import { Button } from '../../components/button/button';
+import { CaseObject } from '../../components/types/types';
 
 export class CaseFeed extends Component<{ title: string, cases: CaseObject[] }> {
-  amountOfCases: number = 10;
+  amountOfCases: number = 6;
 
   render() {
     return (
@@ -47,8 +44,6 @@ export class CaseFeed extends Component<{ title: string, cases: CaseObject[] }> 
   }
 
   loadMore() {
-    console.log('current cases: ' + this.amountOfCases);
-    this.amountOfCases += 10;
-    console.log('cases now: ' + this.amountOfCases);
+    this.amountOfCases += 6;
   }
 }

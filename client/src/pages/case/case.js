@@ -2,13 +2,13 @@
 
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import Card from '../card/card';
-import { Alert } from '../alerts/alerts';
+import Card from '../../components/card/card';
+import { Alert } from '../../components/alerts/alerts';
 import { caseService } from '../../services';
-import { Comments } from '../comment/comments';
-import { Button } from '../button/button';
+import { Comments } from '../../components/comment/comments';
+import { Button } from '../../components/button/button';
 import css from './case.css';
-import { CaseObject } from '../types/types';
+import { CaseObject } from '../../components/types/types';
 import { NavLink } from 'react-router-dom';
 import { history } from '../../index';
 

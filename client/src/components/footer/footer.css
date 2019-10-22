@@ -1,13 +1,16 @@
-.footer {
+footer {
+  max-height: 90px;
 }
 
 .contact {
   background-color: #fbfbfb;
+  padding-top: 5px;
 }
 
 .contact a {
   padding-right: 1em;
   padding-left: 1em;
+  padding-top: 1em;
 }
 
 .contact img {
@@ -15,10 +18,12 @@
 }
 
 .copyright {
+  padding-bottom: 5px;
 }
 
 .fab {
   color: #1d5c60;
+  padding-top: 5px;
 }
 
 .fab:hover {

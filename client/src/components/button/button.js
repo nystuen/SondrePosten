@@ -8,14 +8,23 @@ import Card from '../card/card';
  * Button
  */
 
-export class Button extends Component<{ type: string, href?: string, onClick: () => mixed, children: React.Node }> {
+export class Button extends Component<{ type: string, href?: string, id?: string, onClick: () => mixed, children: React.Node }> {
   className: string = 'btn btn-' + this.props.type;
+
+  getButtonId(){
+    if(this.props.id){
+      return this.props.id;
+    } else {
+      return "button"
+    }
+  }
+
 
   render() {
     return (
-      <span>
+      <span id={this.getButtonId()}>
         <button
-          id="button"
+          id={this.getButtonId()}
           onClick={() => {
             this.props.onClick();
           }}

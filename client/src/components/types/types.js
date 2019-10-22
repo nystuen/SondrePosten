@@ -5,7 +5,7 @@ export class CaseObject {
   overskrift: string;
   bilde: string;
   bildetekst: string;
-  tidspunkt: ?string;
+  tidspunkt: string;
   innhold: string;
   kategori: string;
   viktighet: number;
@@ -14,6 +14,7 @@ export class CaseObject {
     overskrift: string,
     bilde: string,
     bildetekst: string,
+    tidspunkt: string,
     innhold: string,
     kategori: string,
     viktighet: number
@@ -21,6 +22,7 @@ export class CaseObject {
     this.overskrift = overskrift;
     this.bilde = bilde;
     this.bildetekst = bildetekst;
+    this.tidspunkt = tidspunkt;
     this.innhold = innhold;
     this.kategori = kategori;
     this.viktighet = viktighet;
@@ -64,4 +66,29 @@ export class RatingObject {
     this.rating = rating;
     this.sak_id = sak_id;
   }
+}
+
+
+export class DateTime {
+  dateTime: string;
+
+  constructor(){
+
+    // Created to make sure number < than 10 has a zero infront of it.
+    Number.prototype.padLeft = function(base,chr){
+      var  len = (String(base || 10).length - String(this).length)+1;
+      return len > 0? new Array(len).join(chr || '0')+this : this;
+    }
+
+    var d = new Date();
+    this.dateTime = [ (d.getMonth()+1).padLeft(),
+        d.getDate().padLeft(),
+        d.getFullYear()].join('/')+
+      ' ' +
+      [ d.getHours().padLeft(),
+        d.getMinutes().padLeft(),
+        d.getSeconds().padLeft()].join(':');
+  }
+
+
 }

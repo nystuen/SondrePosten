@@ -24,9 +24,9 @@ export class CategoriesList extends Component<{ currentCat?: string }> {
         <select alt="Kategoriliste" className="form-control" id="kat">
           {this.categories.map(s =>
             this.props.currentCat == s.kategori ? (
-              <option alt="Kategorivalg" selected="selected"> {s.kategori} </option>
+              <option key={s.kategori} alt="Kategorivalg" selected="selected"> {s.kategori} </option>
             ) : (
-              <option alt="Kategorivalg"> {s.kategori}</option>
+              <option key={s.kategori} alt="Kategorivalg"> {s.kategori}</option>
             )
           )}
         </select>

@@ -25,7 +25,7 @@ class CaseService {
   getComments(id: number): Promise<CommentObject[]> {
     return axios.get('/api/comments/' + id);
   }
-
+v                    
   getLikes(id: number): Promise<number[]> {
     return axios.get('/api/likes/' + id);
   }
