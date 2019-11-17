@@ -1,4 +1,4 @@
-# Søndre Posten
+# SøndrePosten
 The application will reload on source changes.
 
 ## Client: run tests and start
