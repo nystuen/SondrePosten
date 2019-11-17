@@ -1,4 +1,4 @@
-# Example client-server application using a client service object
+# Søndre Posten
 The application will reload on source changes.
 
 ## Client: run tests and start
