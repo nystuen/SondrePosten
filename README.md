@@ -11,18 +11,6 @@ npm start
 ```
 
 ## Server: run tests and start
-Prerequisite: mysql-server installed locally
-
-In case you have mysql 8 or newer installed:
-```sh
-echo "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY ''" | mysql -uroot
-```
-
-Create the mysql database used by server:
-```sh
-echo "CREATE DATABASE School" | mysql -uroot
-```
-
 From the top-level repository folder:
 ```sh
 cd server
