@@ -18,6 +18,7 @@ import {Row} from '../../components/row/row';
 import {Col} from '../../components/col/col';
 import ImportanceList from '../../components/importanceList/importanceList';
 import {DateTime} from '../../components/types/types';
+import { UploadImage } from '../../components/uploadImage/uploadImage';
 
 
 export class EditCase extends Component<{ match: { params: { id: number } } }> {
@@ -67,7 +68,8 @@ export class EditCase extends Component<{ match: { params: { id: number } } }> {
       let katValue = document.getElementById('kat').value;
       let newCase = new CaseObject(
         this.overskriftValue,
-        this.bildeValue,
+        // $FlowFixMe
+        this.bildeValue.fileName,
         this.bildetekstValue,
         // $FlowFixMe
         datetime.dateTime,
@@ -85,6 +87,23 @@ export class EditCase extends Component<{ match: { params: { id: number } } }> {
     }
   };
 
+  getImage = (s: CaseObject) => {
+    if(typeof this.bildeValue.fileName === 'undefined'){
+      console.log('undefined');
+      return <div className="card" styles="width: 18rem;">
+        <img id={'caseImage'} className="card-img-top" src={this.bildeValue} alt="Sakens bilde" />
+      </div>
+    } else if(this.bildeValue !== ''){
+      console.log('not undefined');
+      return <div className="card" styles="width: 18rem;">
+        {/* $FlowFixMe*/}
+        <img id={'caseImage'} className="card-img-top" src={this.bildeValue.fileName} alt="Sakens bilde" />
+      </div>
+    } else {
+      return <span></span>
+    }
+  }
+
   render() {
     return (
       <div className="case editCase">
@@ -92,7 +111,8 @@ export class EditCase extends Component<{ match: { params: { id: number } } }> {
           <div className="container-large">
             <TextHeader text="Endre sak" />
             <StringInput title={"Overskrift"} id="overskriftInput" name="overskriftInput" defaultValue={s.overskrift} onChange={value => (this.overskriftValue = value)}/>
-            <StringInput title={"Bildeadresse"} id="bildeInput" name="bildeInput" defaultValue={s.bilde} onChange={value => (this.bildeValue = value)}/>
+            {this.getImage(s)}
+            <UploadImage onChange={value => (this.bildeValue = value)}/>
             <StringInput title={"Bildetekst"} id="bildetekstInput" name="bildetekstInput" defaultValue={s.bildetekst} onChange={value => (this.bildetekstValue = value)}/>
             <StringInput textArea={true} title={"Innhold"} id="innholdInput" name="innholdInput" defaultValue={s.innhold} onChange={value => (this.innholdValue = value)}/>
 
@@ -123,3 +143,4 @@ export class EditCase extends Component<{ match: { params: { id: number } } }> {
     );
   }
 }
+/*<StringInput title={"Bildeadresse"} id="bildeInput" name="bildeInput" defaultValue={s.bilde} onChange={value => (this.bildeValue = value)}/>*/

@@ -7,13 +7,12 @@ import fs from 'fs';
 import CaseDao from './dao/casedao';
 import CommentDao from './dao/commentdao';
 import RatingDao from './dao/ratingdao';
-import mysql from 'mysql';
 import commentController from './controllers/commentController';
 import ratingController from './controllers/ratingController';
 import caseController from './controllers/caseController';
+import {pool} from './database';
 
 const bodyParser = require('body-parser');
-const config = require('getconfig');
 
 type Request = express$Request;
 type Response = express$Response;
@@ -23,15 +22,6 @@ const public_path = path.join(
   '/../../client/public'
 );
 
-const pool = mysql.createPool({
-  connectionLimit: 5,
-  host: 'mysql.stud.iie.ntnu.no',
-  user: 'aadneny',
-  password: config.db_password,
-  database: 'aadneny',
-  debug: false
-});
-
 let app = express();
 export let urlencodedParser = bodyParser.urlencoded({
   extended: false
@@ -40,6 +30,7 @@ let caseDao = new CaseDao(pool);
 let commentDao = new CommentDao(pool);
 let ratingDao = new RatingDao(pool);
 app.use(express.static(public_path));
+app.use('/uploads', express.static('uploads'));
 app.use(express.json()); // For parsing application/json
 
 // Fire controllers
@@ -55,7 +46,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 // The listen promise can be used to wait for the web server to start (for instance in your tests)
 export let listen = new Promise<void>((resolve, reject) => {
-  app.listen(3000,    error=> {
+  app.listen(3000, error=> {
     if (error) reject(error.message);
     console.log('Server started');
     resolve();

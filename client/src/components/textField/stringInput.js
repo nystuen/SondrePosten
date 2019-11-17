@@ -44,8 +44,9 @@ export default class StringInput extends React.Component<{
             id={this.props.id}
             name={this.props.name}
             defaultValue={this.props.defaultValue}
-            onChange={(e) => this.handleChange(e)}
+            onChange={(event: SyntheticInputEvent<HTMLInputElement>) => this.handleChange(event)}
           />
+
         ) : (
           <input
             type="text"

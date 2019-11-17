@@ -8,13 +8,17 @@ import css from './card.css';
 import { CaseObject, RatingObject } from '../types/types';
 import { caseService } from '../../services';
 import { Alert } from '../alerts/alerts';
-
+import { Base64 } from 'js-base64';
 export class Card extends Component<{
   case: CaseObject
 }> {
   id = this.props.case.id;
   likes: number = 0;
   dislikes: number = 0;
+  hasLiked: boolean = false;
+  hasDisliked: boolean = false;
+  hasVoted: boolean = false;
+  timerActive: boolean = false;
 
   componentDidMount() {
     caseService
@@ -30,28 +34,67 @@ export class Card extends Component<{
       .then(dislikes => (this.dislikes = dislikes.data[0].dislikes));
   }
 
+
+  /**
+
+
+   Liker sak
+   this.likes++
+   kan unlike innen 5 sek
+
+  unliker? -> this.likes--
+  hvis ikke -> {
+    blir postet til databasen etter dette.
+    hasVoted = true
+  }
+
+
+   prøver å dislike eller like sak -> this.Likes == true -> får ikke stemt.
+
+
+   Disliker sak
+   this.dislikes++
+   kan undislike innen 5 sek
+
+   undisliker? -> this.dislikes--
+   hvis ikke -> {
+    blir postet til databasen etter dette.
+    hasVoted = true
+  }
+
+   prøver å dislike eller like sak -> this.Likes == true -> får ikke stemt.
+
+
+
+    */
   handleLike = () => {
-    // $FlowFixMe
-    let newRating = new RatingObject(1, this.id);
-
-    caseService
+    if(!this.hasVoted){
       // $FlowFixMe
-      .likeCase(newRating)
-      .catch((error: Error) => Alert.danger(error.message));
+      let newRating = new RatingObject(1, this.id);
 
-    this.likes++;
+      caseService
+      // $FlowFixMe
+        .likeCase(newRating)
+        .catch((error: Error) => Alert.danger(error.message));
+
+      this.likes++;
+      this.hasVoted = true;
+    }
   };
 
   handleDislike = () => {
-    // $FlowFixMe
-    let newRating = new RatingObject(1, this.id);
-
-    caseService
+    if(!this.hasVoted){
       // $FlowFixMe
-      .dislikeCase(newRating)
-      .catch((error: Error) => Alert.danger(error.message));
+      let newRating = new RatingObject(1, this.id);
+      
+      caseService
+      // $FlowFixMe
+        .dislikeCase(newRating)
+        .catch((error: Error) => Alert.danger(error.message));
 
-    this.dislikes++;
+      this.dislikes++;
+      this.hasVoted = true;
+    }
   };
 
   render() {
@@ -92,8 +135,9 @@ export class Card extends Component<{
 
             <h4 className="card-title" alt="Sakens overksrift">{this.props.case.overskrift}</h4>
             <h5 className="card-text" alt="Sakens bildetekst">{this.props.case.bildetekst}</h5>
-            <hr />
-            <p className="card-text" alt="Sakens innhold">{this.props.case.innhold}</p>
+            <hr/>
+            <div dangerouslySetInnerHTML={{__html: this.props.case.innhold}}></div>
+
             <a
               className="d-flex justify-content-end"
               href="/#/"
@@ -112,3 +156,4 @@ export class Card extends Component<{
 }
 
 export default Card;
+/*<p className="card-text" alt="Sakens innhold">{this.props.case.innhold}</p>*/

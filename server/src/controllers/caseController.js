@@ -1,4 +1,32 @@
 import { urlencodedParser } from '../server';
+import multer from 'multer';
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, './uploads/');
+  },
+  filename: function(req, file, cb){
+      cb(null, new Date().toISOString() +"-"+ file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  // reject
+  if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
+    cb(null, true);
+  } else {
+    console.log
+    cb(null, false);
+  }
+};
+
+const upload = multer({
+  storage: storage,
+  limits: {
+  fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
 
 module.exports = function(app, caseDao) {
   // ---Get---
@@ -89,9 +117,16 @@ module.exports = function(app, caseDao) {
   // ---Post---
 
   // Add new case
+  app.post('/api/uploadImage', upload.single('caseImage'), (req: Request, res: Response) => {
+    console.log('Uploaded successfully: ', req.file.path);
+    res.json({ fileName: req.file.path});
+  });
+
+
+
+  // Add new case
   app.post('/api/reg', (req: Request, res: Response) => {
-    if (!(req.body instanceof Object))
-      return res.sendStatus(400);
+
     let currentdate = new Date();
 
     let datetime =
@@ -115,7 +150,7 @@ module.exports = function(app, caseDao) {
 
       tidspunkt: datetime,
       // $FlowFixMe
-      bilde: req.body.bilde,
+      bilde: req.body.bilde.fileName,
       // $FlowFixMe
       kategori: req.body.kategori,
       // $FlowFixMe

@@ -25,12 +25,14 @@
     "@babel/polyfill": "^7.0.0",
     "axios": "^0.18.0",
     "chai": "^4.2.0",
+    "js-base64": "^2.5.1",
     "react": "^16.6.0",
     "react-router-dom": "^4.3.1",
     "react-simplified": "^1.5.2",
     "react-smooth-marquee": "^1.0.0",
     "sinon": "^7.1.1",
-    "sinon-chai": "^3.2.0"
+    "sinon-chai": "^3.2.0",
+    "trumbowyg": "^2.20.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

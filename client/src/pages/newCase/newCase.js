@@ -16,6 +16,7 @@ import {Row} from '../../components/row/row';
 import {Col} from '../../components/col/col';
 import ImportanceList from '../../components/importanceList/importanceList';
 import {DateTime} from '../../components/types/types';
+import { UploadImage } from '../../components/uploadImage/uploadImage';
 
 export class NewCase extends Component {
   case: CaseObject = new CaseObject('', '', '', '', '', '', 1);
@@ -68,19 +69,29 @@ export class NewCase extends Component {
       Alert.danger('Du har ikke skrevet inn din sak i riktig format.');
     }
   };
+
+  getImage = () => {
+
+    if(this.bildeValue !== ''){
+      return <div className="card" styles="width: 18rem;">
+        <img id={'caseImage'} className="card-img-top" src={this.bildeValue.fileName} alt="Sakens bilde" />
+      </div>
+    } else {
+      return <span></span>
+    }
+  }
+
 // react version 16.6.0
   render() {
-    console.log(React.version);
     return (
       <div className="container-large regCase">
         <TextHeader text="Registrer en ny sak" />
-
         <StringInput title={"Overskrift"} id="overskriftInput" name="overskriftInput" onChange={value => (this.overskriftValue = value)}/>
-        <StringInput title={"Bildeadresse"} id="bildeInput" name="bildeInput"  onChange={value => (this.bildeValue = value)}/>
+        {this.getImage()}
+        <UploadImage onChange={value => (this.bildeValue = value)}/>
         <StringInput title={"Bildetekst"} id="bildetekstInput" name="bildetekstInput" onChange={value => (this.bildetekstValue = value)}/>
         <StringInput textArea={true} title={"Innhold"} id="innholdInput" name="innholdInput" onChange={value => (this.innholdValue = value)}/>
-
-
+        
         <Row>
           <Col md={6}>
             <label htmlFor="sel1">Kategorier</label>

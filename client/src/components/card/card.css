@@ -10,3 +10,7 @@
 .fa-2x:hover {
   color: #0e2327;
 }
+
+img {
+  max-width: 100%;
+}
