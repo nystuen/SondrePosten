@@ -5,14 +5,16 @@ import { Col } from 'react-bootstrap';
 
 export default class ImportanceList extends React.Component<{viktighet?: number}> {
 
+  // $FlowFixMe
   constructor(props) {
     super(props);
 
-    this.handleChange = this.handleChange.bind(this);
+    (this: any).handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e: Object) {
     console.log("New viktighet: " + e.target.value);
+    // $FlowFixMe
     this.props.onChange(e.target.value);
   };
 

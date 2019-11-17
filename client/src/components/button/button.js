@@ -22,7 +22,7 @@ export class Button extends Component<{ type: string, href?: string, id?: string
 
   render() {
     return (
-      <span id={this.getButtonId()}>
+      <span id={this.getButtonId() + ' _span'}>
         <button
           id={this.getButtonId()}
           onClick={() => {

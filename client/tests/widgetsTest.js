@@ -12,7 +12,7 @@ describe('Testing cardPreview', () => {
   let wrapper, aCase;
 
   beforeEach(() => {
-    aCase = new CaseObject('overskrift', 'bildeadresse.jpg', 'bildetekst', 'innhold', 'sport', 1);
+    aCase = new CaseObject('overskrift', 'bildeadresse.jpg', 'bildetekst', '03/02/2018','innhold', 'sport', 1);
     aCase.setId(1);
     wrapper = shallow(<CardPreview case={aCase} />);
   });
