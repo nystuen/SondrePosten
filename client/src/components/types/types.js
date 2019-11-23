@@ -75,18 +75,24 @@ export class DateTime {
   constructor(){
 
     // Created to make sure number < than 10 has a zero infront of it.
+    // $FlowFixMe
     Number.prototype.padLeft = function(base,chr){
       var  len = (String(base || 10).length - String(this).length)+1;
       return len > 0? new Array(len).join(chr || '0')+this : this;
     };
 
     var d = new Date();
+    // $FlowFixMe
     this.dateTime = [ (d.getMonth()+1).padLeft(),
+        // $FlowFixMe
         d.getDate().padLeft(),
         d.getFullYear()].join('/')+
       ' ' +
+      // $FlowFixMe
       [ d.getHours().padLeft(),
+        // $FlowFixMe
         d.getMinutes().padLeft(),
+        // $FlowFixMe
         d.getSeconds().padLeft()].join(':');
   }
 
